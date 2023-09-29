@@ -187,6 +187,31 @@ Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fi
 
 Kehitettävä sovellus jakautuu eri osa-alueisiin karkeasti seuraavan kaavion mukaisesti. Sinun tulee tässä harjoituksessa käsitellä ainoastaan kahta luokkaa: [Filtering.java](./src/main/java/exercise/Filtering.java) ja [Sorting.java](./src/main/java/exercise/Sorting.java).
 
+## Osa 1: `filterOutDeletedPosts` (10 % pisteistä)
+
+Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy tiedostosta [Filtering.java](./src/main/java/exercise/Filtering.java). Metodin tulee hyödyntää `filter`-operaatiota ja palauttaa uusi lista, josta puuttuu kaikki sellaiset Post-oliot, joilla on asetettuna `deletedAt`-arvo.
+
+Ratkaisullesi on kirjoitettu valmiit testit, jotka voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
+
+```
+./gradlew test --tests FilteringDeletedPostsTest      # unix
+gradlew.bat test --tests FilteringDeletedPostsTest    # windows
+```
+
+Valmiit testit varmistavat seuraavat tapaukset:
+
+```
+filtering posts
+  ✓ active posts are included in the result
+  ✓ posts marked as deleted are excluded from the result
+  ✓ deleted posts are removed from the beginning, end and between active articles
+  ✓ the function does not modify the original array
+```
+
+## Osa 2: `filterPostsByUser` (20 % pisteistä)
+
+Tiedostossa [Sorting.java](./src/main/java/exercise/Sorting.java) on pohja metodille, joka ottaa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan kyseisen käyttäjän `Post`-oliot. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella: jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä:
+
 ```mermaid
 graph LR
 
@@ -212,32 +237,6 @@ subgraph Exercise
   UsersAndPostsMain --> |sort post & users| Sorting.java
 end
 ```
-
-
-## Osa 1: `filterOutDeletedPosts` (10 % pisteistä)
-
-Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy tiedostosta [](). Metodin tulee hyödyntää `filter`-operaatiota ja palauttaa uusi lista, josta puuttuu kaikki sellaiset Post-oliot, joilla on asetettuna `deletedAt`-arvo.
-
-Ratkaisullesi on kirjoitettu valmiit testit, jotka voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
-
-```
-./gradlew test --tests FilteringDeletedPostsTest      # unix
-gradlew.bat test --tests FilteringDeletedPostsTest    # windows
-```
-
-Valmiit testit varmistavat seuraavat tapaukset:
-
-```
-filtering posts
-  ✓ active posts are included in the result
-  ✓ posts marked as deleted are excluded from the result
-  ✓ deleted posts are removed from the beginning, end and between active articles
-  ✓ the function does not modify the original array
-```
-
-## Osa 2: `filterPostsByUser` (20 % pisteistä)
-
-Tiedostossa [Sorting.java](./src/main/java/exercise/Sorting.java) on pohja metodille, joka ottaa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan kyseisen käyttäjän `Post`-oliot. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella: jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä.
 
 Ratkaisullesi on kirjoitettu valmiit testit, jotka voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
 
