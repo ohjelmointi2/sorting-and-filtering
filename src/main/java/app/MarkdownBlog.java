@@ -1,27 +1,25 @@
 package app;
 
-import java.io.PrintStream;
 import java.util.List;
 
+import exercise.Filtering;
 import model.Post;
 import model.User;
-import model.UserWithPosts;
 
 public class MarkdownBlog {
 
-    public void printIndexToOutput(List<UserWithPosts> usersAndPosts, PrintStream out) {
+    public void printIndex(List<User> users, List<Post> allPosts) {
 
-        for (UserWithPosts u : usersAndPosts) {
-            User user = u.user();
-            List<Post> posts = u.posts();
+        for (User user : users) {
+            List<Post> posts = Filtering.filterPostsByUser(user, allPosts);
 
-            out.println(formatUser(user));
+            System.out.println(formatUser(user));
 
             posts.forEach(post -> {
-                out.println(formatPost(post));
+                System.out.println(formatPost(post));
             });
 
-            out.println();
+            System.out.println();
         }
     }
 

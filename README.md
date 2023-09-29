@@ -1,4 +1,4 @@
-# Filter, map ja sort
+# Users & Posts: omien algoritmien toteuttaminen
 
 Tässä tehtävässä perehdytään filter- ja map-funktioihin sekä lajittelualgoritmeihin.
 
@@ -104,16 +104,33 @@ Alkuperäiseen esimerkkidataan nähden `Post`-tietotyyppiin on tehty uudet attri
  }
 ```
 
-Näitä JSON-tietotyyppejä vastaavat Java-luokat löytyvät valmiina [models-paketista](./src/main/java/models) . Tarkemmat tiedot uusista tiedoista selviävät alempaa.
+Näitä JSON-tietotyyppejä vastaavat `Post`- ja `User`-luokat löytyvät valmiina [models-paketista](./src/main/java/models). Luokat on toteutettu Record-tyyppisinä, koska niiden on tarkoitus ainoastaan varastoida tietoa. Voit lukea halutessasi lisää Record-tyypeistä [dev.java-tutoriaalista](https://dev.java/learn/records/).
+
+```java
+// User-olioita käytetään aivan kuten mitä tahansa "tavallisten luokkien" olioita:
+User user = new User(1, "John", "Doe", "johndoe", "2023-09-29");
+
+// Luokalta löytyy automaattisesti "getterit" kaikille kentille:
+System.out.println("User id: " + user.id());
+System.out.println("First name: " + user.firstName());
+System.out.println("Last name: " + user.lastName());
+System.out.println("Username: " + user.username());
+System.out.println("Registered at: " + user.registeredAt());
+
+// Record-olioiolla on "gettereiden" lisäksi kokoelma muita valmiita
+// metodeja, kuten toString(), equals() and hashCode(
+System.out.println("User object: " + user);
+```
 
 
 ## Tehtävä
 
 Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fiktiivisen saateviestin.
 
-[TL;DR](https://en.wikipedia.org/wiki/TL;DR): Jos et jaksa lukea tarinaa, voit hypätä viestin yli suoraan tehtävän osiin.
+[TL;DR](https://en.wikipedia.org/wiki/TL;DR)🥱: Jos et jaksa lukea tarinaa, voit hypätä viestin yli suoraan tehtävän osiin.
 
-> Subject: RE: RE: RE: RE: Users and posts
+> Subject: RE: RE: RE: RE: Users and posts<br />
+> From: Maxwell Goldgrabber
 >
 > Dear developer,
 >
@@ -171,11 +188,9 @@ filtering posts
   ✓ the function does not modify the original array
 ```
 
-## Osa 2: `combineUsersAndPosts` (20 % pisteistä)
+## Osa 2: `filterPostsByUser` (20 % pisteistä)
 
-Tiedostossa [TODO](TODO) on pohja metodille, joka ottaa parametreinaan listat `User`- sekä `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se luo jokaista käyttäjää kohden uuden `UserWithPosts`-olion, johon on asetettu käyttäjä sekä lista hänen julkaisemistaan `Post`-olioista. Tuloksena metodi palauttaa listan `UserWithPosts`-olioita. `UserWithPosts` on määritetty [TODO](TODO)-tiedostossa. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella: jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä.
-
-<!--Lue lisää map-metodista [MDN Web Docs -palvelussa](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).-->
+Tiedostossa [TODO](TODO) on pohja metodille, joka ottaa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan kyseisen käyttäjän `Post`-oliot. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella: jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä.
 
 Ratkaisullesi on kirjoitettu valmiit testit, jotka voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
 

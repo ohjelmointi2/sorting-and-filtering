@@ -3,14 +3,12 @@ package app;
 import java.util.List;
 
 import exercise.Filtering;
-import exercise.Mapping;
 import exercise.Sorting;
 import json.JsonFileReader;
 import json.PostReader;
 import json.UserReader;
 import model.Post;
 import model.User;
-import model.UserWithPosts;
 
 public class UsersAndPostsMain {
 
@@ -21,10 +19,8 @@ public class UsersAndPostsMain {
         List<User> users = getUsers();
         List<Post> activePosts = getActivePosts();
 
-        List<UserWithPosts> usersAndPosts = Mapping.combineUsersAndPosts(users, activePosts);
-
         MarkdownBlog blog = new MarkdownBlog();
-        blog.printIndexToOutput(usersAndPosts, System.out);
+        blog.printIndex(users, activePosts);
     }
 
     private static List<User> getUsers() {
