@@ -1,4 +1,4 @@
-# Users & Posts: Filter, Map & Sort
+# Filter, map ja sort
 
 Tässä tehtävässä perehdytään filter- ja map-funktioihin sekä lajittelualgoritmeihin.
 
@@ -11,7 +11,7 @@ Tehtävät tarkastetaan automaattisesti [JUnit-yksikkötesteillä](./src/test/ja
 
 💡 *Saat kirjoittaa halutessasi lisää testejä, mutta älä muuta tai poista valmiiksi kirjoitettuja testejä.*
 
-💡 *Tehtävänannossa määritettyjen funktioiden nimien, parametrien tai paluuarvojen muuttaminen ei ole sallittua testien toimivuuden varmistamiseksi.*
+💡 *Tehtävänannossa määritettyjen metodien ja luokkien nimien, parametrien tai paluuarvojen muuttaminen ei ole sallittua testien toimivuuden varmistamiseksi.*
 
 
 ## Riippuvuuksien asentaminen
@@ -152,7 +152,7 @@ Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fi
 
 ## Osa 1: `filterOutDeletedPosts` (10 % pisteistä)
 
-Toteuta funktio `filterOutDeletedPosts`, jonka pohja löytyy tiedostosta [](). Funktion tulee hyödyntää `filter`-metodia ja palauttaa uusi taulukko, josta puuttuu kaikki sellaiset Post-objektit, joilla on asetettuna `deletedAt`-arvo.
+Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy tiedostosta [](). Metodin tulee hyödyntää `filter`-operaatiota ja palauttaa uusi lista, josta puuttuu kaikki sellaiset Post-oliot, joilla on asetettuna `deletedAt`-arvo.
 
 Ratkaisullesi on kirjoitettu valmiit testit, jotka voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
 
@@ -173,7 +173,7 @@ filtering posts
 
 ## Osa 2: `combineUsersAndPosts` (20 % pisteistä)
 
-Tiedostossa [TODO](TODO) on pohja metodille, joka ottaa parametreinaan listat `User`- sekä `Post`-objekteista. Tehtävänäsi on jatkokehittää tätä funktiota siten, että se lisää käyttäjille taulukon hänen omista `Post`-objekteistaan. Tuloksena funktio palauttaa listan `UserWithPosts`-olioita. `UserWithPosts` on määritetty [TODO](TODO)-tiedostossa.
+Tiedostossa [TODO](TODO) on pohja metodille, joka ottaa parametreinaan listat `User`- sekä `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se luo jokaista käyttäjää kohden uuden `UserWithPosts`-olion, johon on asetettu käyttäjä sekä lista hänen julkaisemistaan `Post`-olioista. Tuloksena metodi palauttaa listan `UserWithPosts`-olioita. `UserWithPosts` on määritetty [TODO](TODO)-tiedostossa. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella: jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä.
 
 <!--Lue lisää map-metodista [MDN Web Docs -palvelussa](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map).-->
 
@@ -204,7 +204,7 @@ Tiedostossa [TODO](TODO) on määriteltynä seuraava metodi:
  sortPostsByPublishedDate(posts: Post[])
 ```
 
-Toteuta lajittelulogiikkasi tähän funktioon siten, että funktio palauttaa uuden listan, joka on lajiteltu Post-olioiden julkaisuajan mukaan kasvavassa järjestyksessä. **Voit halutessasi toteuttaa myös erillisiä apufunktioita.**
+Toteuta lajittelulogiikkasi tähän metodiin siten, että metodi palauttaa uuden listan, joka on lajiteltu Post-olioiden julkaisuajan mukaan kasvavassa järjestyksessä. **Voit halutessasi toteuttaa myös erillisiä apumetodeita.**
 
 Huomaa, että koodisi tulee lajitella **kokonaisia Post-olioita**, eli et voi poimia aineistosta esimerkiksi pelkkiä otsikoita ja julkaisuaikoja. **Et saa myöskään muuttaa annettuja listaa tai sillä olevia olioita**.
 
@@ -334,106 +334,10 @@ Tapoja aineiston lajittelemiseksi on lukuisia. Haasta itsesi ja toteuta tehtäv�
 
 Tämän tehtävän on kehittänyt Teemu Havulinna ja se on lisensoitu [Creative Commons BY-NC-SA -lisenssillä](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-Tehtävänannon, käsiteltävien tiedostojen sekä lähdekoodien toteutuksessa on hyödynnetty ChatGPT 3.5:ttä.
+Tehtävänannon, käsiteltävien tiedostojen sekä lähdekoodien toteutuksessa on hyödynnetty ChatGPT 3.5:ttä sekä GitHub copilot-tekoälyavustinta.
 
 
 ## DummyJSON
 
 Tehtävässä hyödynnetyn [DummyJSON](https://github.com/Ovi/DummyJSON/)-palvelun on kehittänyt [Muhammad Ovi (Owais)](https://github.com/Ovi/) ja se on lisensoitu MIT-lisenssillä: [https://github.com/Ovi/DummyJSON/blob/master/LICENCE](https://github.com/Ovi/DummyJSON/blob/master/LICENCE).
 
-
-
-# Java & Gradle -projektipohja
-
-Tämä repositorio sisältää valmiiksi määritellyt Gradle-skriptit sekä [.gitignore](./.gitignore)- ja [.gitattributes](./.gitattributes)-tiedostot Java-projektien pohjaksi. Projektipohjan käyttö edellyttää [Javan versiota 17 tai uudempaa](https://code.visualstudio.com/docs/java/java-tutorial#_installing-a-java-development-kit-jdk).
-
-
-## Gradle ja "wrapper scripts"
-
-[Gradle](https://gradle.org/) on suosittu "build automation"-työkalu, joka helpottaa projektin sekä sen riippuvuuksien hallintaa. Gradlew-skriptit (wrapper scripts) ovat osa Gradlea ja ne mahdollistavat Gradlen käytön ilman, että sinun tarvitsee asentaa Gradle erikseen. Voit ajaa projektiin liittyviä Gradle-tehtäviä suoraan näiden skriptien kautta.
-
-
-### Gradlen käyttö
-
-Skriptit löytyvät projektitiedostojen juuresta. Voit käyttää niitä esim. seuraavasti:
-
-**Unix**:
-
-```bash
-./gradlew build    # kääntää projektin ja tuottaa suoritettavan JAR-tiedoston
-./gradlew test     # suorittaa projektiin liittyvät testit
-```
-
-**Windows**:
-
-```powershell
-.\gradlew.bat build    # kääntää projektin ja tuottaa suoritettavan JAR-tiedoston
-.\gradlew.bat test     # suorittaa projektiin liittyvät testit
-```
-
-Ensimmäisen komennon suorittamisen yhteydessä Gradle lataa tarvittavat riippuvuudet automaattisesti.
-
-
-## .gitignore ja .gitattributes
-
-Tämä pohja sisältää myös valmiiksi määritellyt `.gitignore`- ja `.gitattributes`-tiedostot. `.gitignore`:ssa on määritelty, mitkä tiedostot jätetään versionhallinnan ulkopuolelle, kun taas `.gitattributes`-tiedostossa on määritetty eri tiedostotyypeille yhtenäiset rivinvaihtomerkit.
-
-Voit muokata näitä tiedostoja tarpeidesi mukaan.
-
-
-## Miten käytän tätä pohjaa
-
-1. Forkkaa tämä projekti omalle GitHub-tilillesi. Käytä "Fork" -painiketta tämän projektin GitHub-sivulla.
-
-2. Kloonaa forkkaamasi projekti omalle tietokoneellesi:
-
-   ```bash
-   git clone https://github.com/OMA_KÄYTTÄJÄTUNNUKSESI/projekti.git
-   ```
-
-3. Muokkaa projektin tiedostoja ja koodia tarpeidesi mukaan.
-
-4. Käytä Gradle-skriptejä suorittaaksesi erilaisia tehtäviä projektissasi.
-
-5. Lisää oma koodisi ja muokatut tiedostot Git-versionhallintaan:
-
-   ```bash
-   git add tiedosto1 tiedosto2 tiedosto3
-   git commit -m "Ensimmäinen commit"
-   ```
-
-6. Pushaa muutokset GitHubiin omalle forkkaamallesi projektille:
-
-   ```bash
-   git push origin master
-   ```
-
-
-## Projektin avaaminen Eclipsessä
-
-1. Avaa Eclipse ja valitse `File -> Open Projects from File System...`.
-
-2. Valitse `Directory...` ja valitse projektin kansio, jonka olet aiemmin kloonannut.
-
-3. Klikkaa `Finish` avataksesi projektin Eclipse-ssä.
-
-
-## Projektin avaaminen VS Codessa
-
-1. Avaa Visual Studio Code ja valitse `File -> Open Folder...`.
-
-2. Valitse projektin kansio, jonka olet aiemmin kloonannut ja klikkaa `Open`.
-
-3. Voit nyt muokata, rakentaa ja suorittaa projektiasi Visual Studio Codessa.
-
-
-
-## Lisätietoja
-
-Lisätietoja Gradlesta ja sen käytöstä löydät [Gradlen virallisilta verkkosivuilta](https://gradle.org/).
-
-Hyvää koodausta ja onnea projektisi kanssa!
-
------
-
-Tämän tiedoston luonnissa on hyödynnetty [GhatGPT 3.5](https://chat.openai.com/) -kielimallia.
