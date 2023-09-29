@@ -63,6 +63,32 @@ Jokaisen käyttäjän tuloste on siis muodoltaan seuraava:
 
 Ohjelma on pilkottu useisiin erillisiin luokkiin ja metodeihin, jotta eri toiminnot saadaan yksikkötestattua, ja jotta niitä voidaan uudelleenkäyttää eri puolilla isompaa sovelluskokonaisuutta. Sinun tehtäväsi on jatkaa näiden luokkien ja metodien kehitystyötä fiktiivisen tuoteomistajan vaatimusten mukaisesti.
 
+```mermaid
+graph LR
+
+subgraph MainApplication
+  UsersAndPostsMain
+end
+
+subgraph DataAccess
+  UsersAndPostsMain --> |read users| UserReader.java
+  UsersAndPostsMain --> |read posts| PostReader.java
+
+  UserReader.java --> |implements| JsonFileReader.java
+  PostReader.java --> |implements| JsonFileReader.java
+end
+
+subgraph UserInterface
+  UsersAndPostsMain --> |output data in MD| MarkdownBlog.java
+end
+
+subgraph Exercise
+  UsersAndPostsMain --> |filter active posts| Filtering.java
+
+  UsersAndPostsMain --> |sort post & users| Sorting.java
+end
+```
+
 💡 *Sinun ei tarvitse muuttaa pääohjelmaa ratkaistessasi tätä tehtävää. Tiedoston muuttaminen esim. ohjelman toiminnan tutkimiseksi on kuitenkin halutessasi sallittua.*
 
 
@@ -96,30 +122,7 @@ Alkuperäiseen esimerkkidataan nähden `Post`-tietotyyppiin on tehty uudet attri
  }
 ```
 
-Näitä JSON-tietotyyppejä vastaavat `Post`- ja `User`-luokat löytyvät valmiina [models-paketista](./src/main/java/models):
-
-```mermaid
-classDiagram
-
-class User {
-  +id: long
-  +firstName: String
-  +lastName: String
-  +username: String
-  +registeredAt: String
-}
-
-class Post {
-  +id: long
-  +title: String
-  +body: String
-  +userId: long
-  +publishedAt: String
-  +deletedAt: String
-}
-
-User --o Post : User (userId)
-```
+Näitä JSON-tietotyyppejä vastaavat `Post`- ja `User`-luokat löytyvät valmiina [models-paketista](./src/main/java/models).
 
 Luokat on toteutettu Record-tyyppisinä, koska niiden on tarkoitus ainoastaan varastoida tietoa. Voit lukea halutessasi lisää Record-tyypeistä [dev.java-tutoriaalista](https://dev.java/learn/records/).
 
@@ -213,29 +216,26 @@ filtering posts
 Tiedostossa [Sorting.java](./src/main/java/exercise/Sorting.java) on pohja metodille, joka ottaa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan kyseisen käyttäjän `Post`-oliot. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella: jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä:
 
 ```mermaid
-graph LR
+classDiagram
 
-subgraph MainApplication
-  UsersAndPostsMain
-end
+class User {
+  +id: long
+  +firstName: String
+  +lastName: String
+  +username: String
+  +registeredAt: String
+}
 
-subgraph DataAccess
-  UsersAndPostsMain --> |read users| UserReader.java
-  UsersAndPostsMain --> |read posts| PostReader.java
+class Post {
+  +id: long
+  +title: String
+  +body: String
+  +userId: long
+  +publishedAt: String
+  +deletedAt: String
+}
 
-  UserReader.java --> |implements| JsonFileReader.java
-  PostReader.java --> |implements| JsonFileReader.java
-end
-
-subgraph UserInterface
-  UsersAndPostsMain --> |output data in MD| MarkdownBlog.java
-end
-
-subgraph Exercise
-  UsersAndPostsMain --> |filter active posts| Filtering.java
-
-  UsersAndPostsMain --> |sort post & users| Sorting.java
-end
+User --o Post : User (userId)
 ```
 
 Ratkaisullesi on kirjoitettu valmiit testit, jotka voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
