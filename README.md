@@ -96,7 +96,32 @@ Alkuperäiseen esimerkkidataan nähden `Post`-tietotyyppiin on tehty uudet attri
  }
 ```
 
-Näitä JSON-tietotyyppejä vastaavat `Post`- ja `User`-luokat löytyvät valmiina [models-paketista](./src/main/java/models). Luokat on toteutettu Record-tyyppisinä, koska niiden on tarkoitus ainoastaan varastoida tietoa. Voit lukea halutessasi lisää Record-tyypeistä [dev.java-tutoriaalista](https://dev.java/learn/records/).
+Näitä JSON-tietotyyppejä vastaavat `Post`- ja `User`-luokat löytyvät valmiina [models-paketista](./src/main/java/models):
+
+```mermaid
+classDiagram
+
+class User {
+  +id: long
+  +firstName: String
+  +lastName: String
+  +username: String
+  +registeredAt: String
+}
+
+class Post {
+  +id: long
+  +title: String
+  +body: String
+  +userId: long
+  +publishedAt: String
+  +deletedAt: String
+}
+
+User --o Post : User (userId)
+```
+
+Luokat on toteutettu Record-tyyppisinä, koska niiden on tarkoitus ainoastaan varastoida tietoa. Voit lukea halutessasi lisää Record-tyypeistä [dev.java-tutoriaalista](https://dev.java/learn/records/).
 
 ```java
 // User-olioita käytetään aivan kuten mitä tahansa "tavallisten luokkien" olioita:
@@ -160,6 +185,35 @@ Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fi
 > Lampaala Group<br/>
 > This email was written by ChatGPT
 
+Kehitettävä sovellus jakautuu eri osa-alueisiin karkeasti seuraavan kaavion mukaisesti. Sinun tulee tässä harjoituksessa käsitellä ainoastaan kahta luokkaa: [Filtering.java](./src/main/java/exercise/Filtering.java) ja [Sorting.java](./src/main/java/exercise/Sorting.java).
+
+```mermaid
+graph LR
+
+subgraph MainApplication
+  UsersAndPostsMain
+end
+
+subgraph DataAccess
+  UsersAndPostsMain --> |read users| UserReader.java
+  UsersAndPostsMain --> |read posts| PostReader.java
+
+  UserReader.java --> |implements| JsonFileReader.java
+  PostReader.java --> |implements| JsonFileReader.java
+end
+
+subgraph UserInterface
+  UsersAndPostsMain --> |output data in MD| MarkdownBlog.java
+end
+
+subgraph Exercise
+  UsersAndPostsMain --> |filter active posts| Filtering.java
+
+  UsersAndPostsMain --> |sort post & users| Sorting.java
+end
+```
+
+
 ## Osa 1: `filterOutDeletedPosts` (10 % pisteistä)
 
 Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy tiedostosta [](). Metodin tulee hyödyntää `filter`-operaatiota ja palauttaa uusi lista, josta puuttuu kaikki sellaiset Post-oliot, joilla on asetettuna `deletedAt`-arvo.
@@ -167,8 +221,8 @@ Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy tiedostosta [](). Me
 Ratkaisullesi on kirjoitettu valmiit testit, jotka voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
 
 ```
-./gradlew test --tests TODO      # unix
-gradlew.bat test --tests TODO    # windows
+./gradlew test --tests FilteringDeletedPostsTest      # unix
+gradlew.bat test --tests FilteringDeletedPostsTest    # windows
 ```
 
 Valmiit testit varmistavat seuraavat tapaukset:
@@ -183,13 +237,13 @@ filtering posts
 
 ## Osa 2: `filterPostsByUser` (20 % pisteistä)
 
-Tiedostossa [TODO](TODO) on pohja metodille, joka ottaa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan kyseisen käyttäjän `Post`-oliot. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella: jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä.
+Tiedostossa [Sorting.java](./src/main/java/exercise/Sorting.java) on pohja metodille, joka ottaa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan kyseisen käyttäjän `Post`-oliot. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella: jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä.
 
 Ratkaisullesi on kirjoitettu valmiit testit, jotka voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
 
 ```
-./gradlew test --tests TODO      # unix
-gradlew.bat test --tests TODO    # windows
+./gradlew test --tests FilteringPostsByUserTest      # unix
+gradlew.bat test --tests FilteringPostsByUserTest    # windows
 ```
 
 Valmiit testit varmistavat seuraavat tapaukset:
@@ -205,11 +259,12 @@ combineUsersAndPosts
 
 Tehtävän kolmannessa osassa sinun tulee **järjestää** eli **lajitella** kirjoitukset (Post) niiden julkaisuajan mukaan käyttäen **itse toteuttamaasi lajittelualgoritmia**.
 
-Tiedostossa [TODO](TODO) on määriteltynä seuraava metodi:
+Tiedostossa [Sorting.java](./src/main/java/exercise/Sorting.java) on määriteltynä seuraava metodi:
 
 ```java
-//TODO
- sortPostsByPublishedDate(posts: Post[])
+  public static List<Post> sortPostsByPublishedDate(List<Post> posts) {
+      return posts; // TODO: Implement sorting logic
+  }
 ```
 
 Toteuta lajittelulogiikkasi tähän metodiin siten, että metodi palauttaa uuden listan, joka on lajiteltu Post-olioiden julkaisuajan mukaan kasvavassa järjestyksessä. **Voit halutessasi toteuttaa myös erillisiä apumetodeita.**
@@ -219,8 +274,8 @@ Huomaa, että koodisi tulee lajitella **kokonaisia Post-olioita**, eli et voi po
 Ratkaisullesi on kirjoitettu valmiit testit, jotka voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
 
 ```
-./gradlew test --tests TODO      # unix
-gradlew.bat test --tests TODO    # windows
+./gradlew test --tests SortingPostsTest      # unix
+gradlew.bat test --tests SortingPostsTest    # windows
 ```
 
 Valmiit testit varmistavat seuraavat tapaukset:
@@ -311,8 +366,8 @@ Käyttäjiä vertaillessasi siis sinun tulee siis huomioida, että niiden rekist
 Ratkaisullesi on kirjoitettu valmiit testit, jotka voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
 
 ```
-./gradlew test --tests TODO      # unix
-gradlew.bat test --tests TODO    # windows
+./gradlew test --tests SortingUsersTest      # unix
+gradlew.bat test --tests SortingUsersTest    # windows
 ```
 
 Valmiit testit varmistavat seuraavat tapaukset:

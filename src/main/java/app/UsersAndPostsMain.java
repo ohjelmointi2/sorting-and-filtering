@@ -40,11 +40,12 @@ public class UsersAndPostsMain {
     }
 
     /**
-     * Returns a list of active posts. A post is considered active if it has not
-     * been deleted.
+     * Returns a list of posts sorted by their published date in ascending order
+     * (oldest first). Deleted posts are filtered out.
      */
     private static List<Post> getActivePosts() {
         List<Post> all = postReader.readAll();
-        return Filtering.filterOutDeletedPosts(all);
+        List<Post> active = Filtering.filterOutDeletedPosts(all);
+        return Sorting.sortPostsByPublishedDate(active);
     }
 }
