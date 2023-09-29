@@ -22,7 +22,6 @@ public class UserReader implements JsonFileReader<User> {
         Gson gson = new Gson();
 
         try {
-            // See
             // https://github.com/google/gson/blob/main/UserGuide.md#collections-examples
             TypeToken<ArrayList<User>> listType = new TypeToken<ArrayList<User>>() {
             };

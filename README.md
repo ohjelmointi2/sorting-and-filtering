@@ -1,8 +1,8 @@
 # Users & Posts: omien algoritmien toteuttaminen
 
-Tässä tehtävässä perehdytään filter- ja map-funktioihin sekä lajittelualgoritmeihin.
+Tässä tehtävässä perehdytään Java-olioista koostuvien listojen suodattamiseen ja lajitteluun eri attribuuttien perusteella.
 
-Tavoitteenamme on opetella tiettyjä ennalta valittuja algoritmeja sekä tietorakenteita sekä tehdä koodista testattavaa ja uudelleenkäytettävää.
+Tavoitteenamme on opetella tiettyjä ennalta valittuja algoritmeja sekä tietorakenteita sekä tehdä koodistamme testattavaa ja uudelleenkäytettävää.
 
 
 ## Tehtävien tarkastaminen
@@ -28,7 +28,7 @@ Riippuvuudet sisältävät [JUnit-testaustyökalun](https://junit.org/) yksikkö
 
 ## Pääohjelman suorittaminen
 
-Tehtäväpohjassa on valmiiksi toteutettu pääohjelma [TODO](./src/main/java/), joka tulostaa käyttäjiä ja postauksia. Tulosteet ovat alussa väärät ja esimerkiksi käyttäjien nimien jälkeen tulostuu aina samat otsikot. Tulosteet muuttuvat kuitenkin oikeiksi sitä mukaa, kun ratkot tehtävän osia. Voit suorittaa pääohjelman joko koodieditorisi run-painikkeella tai Gradle:n avulla:
+Tehtäväpohjassa on valmiiksi toteutettu pääohjelma [UsersAndPostsMain.java](./src/main/java/app/UsersAndPostsMain.java), joka tulostaa käyttäjiä ja postauksia. Tulosteet ovat alussa väärät ja esimerkiksi käyttäjien nimien jälkeen tulostuu aina samat otsikot. Tulosteet muuttuvat kuitenkin oikeiksi sitä mukaa, kun ratkot tehtävän osia. Voit suorittaa [pääohjelman](./src/main/java/app/UsersAndPostsMain.java) joko koodieditorisi run-painikkeella tai Gradle:n avulla:
 
 ```sh
 ./gradlew run       # Unix
@@ -51,7 +51,7 @@ Ohjelman tuloste on muodoltaan esim. seuraava:
    2023-07-13T09:33:37.100Z
 ```
 
-Jokaisen käyttäjän tulosteen on siis tarkoitus olla seuraava:
+Jokaisen käyttäjän tuloste on siis muodoltaan seuraava:
 
 ```
 # [Etunimi] [Sukunimi] ([rekisteröitymisaika])
@@ -78,11 +78,6 @@ Alkuperäiseen esimerkkidataan nähden `Post`-tietotyyppiin on tehty uudet attri
    "title": "Hopes and dreams were dashed that day.",
    "body": "Hopes and dreams were...",
    "userId": 41,
-   "tags": [
-     "crime",
-     "mystery",
-     "love"
-   ],
    "reactions": 2,
 +  "publishedAt": "2023-06-01T08:07:20.410Z",
 +  "deletedAt": "2023-06-14T02:16:08.513Z"
@@ -96,10 +91,7 @@ Alkuperäiseen esimerkkidataan nähden `Post`-tietotyyppiin on tehty uudet attri
    "id": 1,
    "firstName": "Terry",
    "lastName": "Medhurst",
-   "maidenName": "Smitham",
-   "age": 50,
-   "gender": "male",
-   "userAgent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/12.0.702.0 Safari/534.24",
+   "username": "terrmed",
 +  "registeredAt": "2022-07-16T22:57:59.361Z"
  }
 ```
@@ -122,6 +114,7 @@ System.out.println("Registered at: " + user.registeredAt());
 System.out.println("User object: " + user);
 ```
 
+💡 *JSON-tiedoston lukemiseen Java-ohjelmassa käytämme tässä tehtävässä Googlen julkaisemaa [Gson-kirjastoa](https://github.com/google/gson). Gson mahdollistaa JSON-datan muuntamisen Java-olioiksi ja päinvastoin. JSON-tiedoston käsittely on toteutettu valmiiksi [PostReader](./src/main/java/json/PostReader.java)- ja [UserReader](./src/main/java/json/UserReader.java)-luokissa. Sinun ei tarvitse perehtyä Gson:in yksityiskohtiin tai käyttää sitä itse.*
 
 ## Tehtävä
 

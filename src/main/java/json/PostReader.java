@@ -22,7 +22,6 @@ public class PostReader implements JsonFileReader<Post> {
         Gson gson = new Gson();
 
         try {
-            // See
             // https://github.com/google/gson/blob/main/UserGuide.md#collections-examples
             TypeToken<ArrayList<Post>> listType = new TypeToken<ArrayList<Post>>() {
             };
