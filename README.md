@@ -200,7 +200,7 @@ Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fi
 
 
 
-## Osa 1: `filterOutDeletedPosts` (10 % pisteistä)
+## Osa 1: `filterOutDeletedPosts` *(perusteet, 10 % pisteistä)*
 
 Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy tiedostosta [Filtering.java](./src/main/java/exercise/Filtering.java). Metodin tulee hyödyntää `filter`-operaatiota ja palauttaa uusi lista, josta **puuttuu** kaikki sellaiset Post-oliot, joilla on asetettuna `deletedAt`-arvo.
 
@@ -221,7 +221,7 @@ filtering posts
   ✓ the function does not modify the original array
 ```
 
-## Osa 2: `filterPostsByUser` (20 % pisteistä)
+## Osa 2: `filterPostsByUser` *(perusteet, 20 % pisteistä)*
 
 Tiedostossa [Filtering.java](./src/main/java/exercise/Filtering.java) on pohja metodille, joka saa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan kyseisen käyttäjän `Post`-oliot. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella - jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä:
 
@@ -265,7 +265,7 @@ combineUsersAndPosts
   ✓ empty input arrays are handled without errors
 ```
 
-## Osa 3: `sortPostsByPublishedDate` (40 % pisteistä)
+## Osa 3: `sortPostsByPublishedDate` *(soveltaminen, 40 % pisteistä)*
 
 Tehtävän kolmannessa osassa sinun tulee **järjestää** eli **lajitella** kirjoitukset (Post) niiden julkaisuajan mukaan käyttäen **itse toteuttamaasi lajittelualgoritmia**.
 
@@ -341,7 +341,7 @@ Voit valita itsellesi mieluisen algoritmin esimerkiksi tutustumalla ensin niiden
 💡 *Oikeassa ohjelmistoprojektissa käyttäisit Javan valmista lajittelulogiikkaa joko [Comparator](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html)- tai [Comparable](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html)-rajapinnan avulla. Tässä tehtävässä harjoittelemme kuitenkin algoritmin toteutusta, joten kirjoitamme lajittelun itse. Tehtävän seuraavassa osassa saat käyttää valmista metodia.*
 
 
-## Osa 4: `sortUsersByRegistrationDate` (30 % pisteistä)
+## Osa 4: `sortUsersByRegistrationDate` *(soveltaminen, 30 % pisteistä)*
 
 Tehtävän viimeinen osa on toinen lajittelu, jossa lajiteltavan aineiston vaihtelevat tietotyypit edellyttävät hieman soveltamista:
 
