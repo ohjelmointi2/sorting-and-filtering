@@ -15,9 +15,7 @@ public class Filtering {
      * @return a new list of posts that does not contain deleted posts
      */
     public static List<Post> filterOutDeletedPosts(List<Post> posts) {
-        // TODO: Implement manual sorting logic here.
-        // The existing `sort` method must not be used!
-        // See https://en.wikipedia.org/wiki/Sorting_algorithm.
+        // TODO: Implement filtering logic here.
         return posts;
     }
 
