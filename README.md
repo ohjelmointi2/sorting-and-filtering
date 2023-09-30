@@ -365,7 +365,7 @@ Tehtävän viimeinen osa on toinen lajittelu, jossa lajiteltavan aineiston vaiht
 >
 > These examples demonstrate the variation in the `registeredAt` attribute's data types, with some users having epoch timestamps and others having ISO 8601 formatted dates. It's essential that your implementation handles the different data types (integer and string) for the *registeredAt* attribute.
 
-Käyttäjiä vertaillessasi siis sinun tulee siis huomioida, että niiden rekisteröitymisaika saattaa olla tallennettuna kahdella eri tavalla. Tässä voi olla hyödyksi toteuttaa erillinen apumetodi, joka palauttaa käyttäjästä riippumatta rekisteröitymisajan aina samassa muodossa. Lisäksi saatat hyötyä Java-tutoriaalin [The Date Time API](https://dev.java/learn/date-time/)-luvusta.
+Käyttäjiä vertaillessasi siis sinun tulee siis huomioida, että niiden rekisteröitymisaika saattaa olla tallennettuna kahdella eri tavalla. Tässä voi olla hyödyksi toteuttaa erillinen apumetodi, joka palauttaa käyttäjästä riippumatta rekisteröitymisajan aina samassa muodossa. Saat oman harkintasi mukaan toteuttaa apumetodeja sekä [User-luokkaan](./src/main/java/model/User.java) että [Sorting-luokkaan](./src/main/java/exercise/Sorting.java). Lisäksi saatat hyötyä Java-tutoriaalin [The Date Time API](https://dev.java/learn/date-time/)-luvusta.
 
 Ratkaisullesi on kirjoitettu [valmiit testit](./src/test/java/exercise/SortingUsersTest.java), jotka voit suorittaa koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
 
@@ -397,6 +397,8 @@ Vaikka saat käyttää tehtävän viimeisessä osassa valmista sort-metodia, ede
 ## 🚀 Pro task: Lajittelu streamien avulla
 
 Tapoja aineiston lajittelemiseksi on lukuisia. Haasta itsesi ja toteuta tehtävän viimeisessä osassa lajittelu hyödyntäen [Javan Stream API:a](https://dev.java/learn/api/streams/intermediate-operation/).
+
+[What is Stream.sorted() method in Java? (educative)](https://www.educative.io/answers/what-is-streamsorted-method-in-java)
 
 
 ## Lisenssi ja tekijät
