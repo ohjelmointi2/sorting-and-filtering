@@ -39,7 +39,7 @@ public class FilteringDeletedPostsTest {
         }
 
         @Test
-        public void theFunctionDoesNotModifyTheOriginalList() {
+        void theFunctionDoesNotModifyTheOriginalList() {
                 List<Post> original = List.of(active2022, deleted2023, active2023, deleted2022);
                 List<Post> result = Filtering.filterOutDeletedPosts(original);
 
@@ -47,7 +47,7 @@ public class FilteringDeletedPostsTest {
         }
 
         @Test
-        public void emptyListIsReturnedWhenTheOriginalListIsEmpty() {
+        void emptyListIsReturnedWhenTheOriginalListIsEmpty() {
                 List<Post> result = Filtering.filterOutDeletedPosts(List.of());
 
                 assertTrue(result.isEmpty());

@@ -1,4 +1,4 @@
-# Users & Posts: omien algoritmien toteuttaminen
+# Tietorakenteet ja algoritmit: filter ja sort
 
 Tässä tehtävässä perehdytään Java-olioista koostuvien listojen suodattamiseen ja lajitteluun eri attribuuttien perusteella.
 
@@ -131,7 +131,7 @@ Alkuperäiseen dataan nähden `Post`-tietotyyppiin on tehty uudet attribuutit `p
  }
 ```
 
-Näitä JSON-tietotyyppejä vastaavat `Post`- ja `User`-luokat löytyvät valmiina [models-paketista](./src/main/java/models).
+Näitä JSON-tietotyyppejä vastaavat `Post`- ja `User`-luokat löytyvät valmiina [model-paketista](./src/main/java/model/).
 
 Luokat on toteutettu Record-tyyppisinä, koska niiden on tarkoitus ainoastaan varastoida tietoa. Voit lukea halutessasi lisää Record-tyypeistä [dev.java-tutoriaalista](https://dev.java/learn/records/).
 
@@ -214,11 +214,11 @@ gradlew.bat test --tests FilteringDeletedPostsTest    # windows
 Testit varmistavat seuraavat tapaukset:
 
 ```
-filtering posts
+filter out deleted posts
   ✓ active posts are included in the result
   ✓ posts marked as deleted are excluded from the result
-  ✓ deleted posts are removed from the beginning, end and between active articles
-  ✓ the function does not modify the original array
+  ✓ the function does not modify the original list
+  ✓ empty list is returned when the original list is empty
 ```
 
 ## Osa 2: `filterPostsByUser` *(perusteet, 20 % pisteistä)*
@@ -259,10 +259,11 @@ gradlew.bat test --tests FilteringPostsByUserTest    # windows
 Testit varmistavat seuraavat tapaukset:
 
 ```
-combineUsersAndPosts
-  ✓ posts are mapped with users correctly
-  ✓ function does not modify given users
-  ✓ empty input arrays are handled without errors
+FilteringPostsByUser
+  ✓ posts written by the user are included in the result
+  ✓ posts written by other users are excluded from the result
+  ✓ empty list is returned when the user has no posts
+  ✓ empty list is returned when the posts list is empty
 ```
 
 ## Osa 3: `sortPostsByPublishedDate` *(soveltaminen, 40 % pisteistä)*
@@ -292,11 +293,10 @@ Testit varmistavat seuraavat tapaukset:
 
 ```
 sorting posts by publishedAt
-  ✓ post are returned in correct order
+  ✓ posts are returned in ascending order
+  ✓ empty list is returned when the original list is empty
   ✓ sorting handles posts with identical dates correctly
-  ✓ sorting an empty array should not throw exceptions
-  ✓ sorting should not modify the original array
-  ✓ sorting posts must not utilize Array.sort
+  ✓ the function does not modify the original list
 ```
 
 🚨 **Tämän harjoituksen tavoitteena on opetella itse toteuttamaan jokin tunnettu lajittelualgoritmi, joten Javan valmiiden sort-toteutusten käyttämistä ei sallita.**
@@ -336,7 +336,7 @@ Olemme koonneet alle hyviä vaihtoehtoja, joille löytyy myös hyvät videotutor
 
 ### Algoritmin valintaperusteet
 
-Voit valita itsellesi mieluisen algoritmin esimerkiksi tutustumalla ensin niiden tehokkuuteen. Voit myös hyvin valita sen, joka vaikuttaa toteutukseltaan sopivan yksinkertaiselta. Muista myös, että voit kysyä Teamsissa neuvoa mihin vain tehtävässä kohtaamaasi haasteeseen liittyen. Todennäköisesti samojen haasteiden parissa kamppailee myös moni muu kurssilainen.
+Voit valita itsellesi mieluisen algoritmin esimerkiksi tutustumalla ensin niiden tehokkuuteen. Voit myös hyvin valita sen, joka vaikuttaa toteutukseltaan sopivan yksinkertaiselta. Muista myös, että voit kysyä neuvoa mihin vain tehtävässä kohtaamaasi haasteeseen liittyen. Todennäköisesti samojen haasteiden parissa kamppailee myös moni muu kurssilainen.
 
 💡 *Oikeassa ohjelmistoprojektissa käyttäisit Javan valmista lajittelulogiikkaa joko [Comparator](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html)- tai [Comparable](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html)-rajapinnan avulla. Tässä tehtävässä harjoittelemme kuitenkin algoritmin toteutusta, joten kirjoitamme lajittelun itse. Tehtävän seuraavassa osassa saat käyttää valmista metodia.*
 
@@ -356,15 +356,15 @@ Tehtävän viimeinen osa on toinen lajittelu, jossa lajiteltavan aineiston vaiht
 >
 > P.S. Here are examples of the different types of `registeredAt` values for users:
 >
-> 1. **Epoch Timestamp (Integer)**:
+> 1. **Epoch Timestamp**:
 >    - User 1: Registered at "1632218400" (Represents September 21, 2021, at 12:00:00 UTC)
 >    - User 2: Registered at "1663754400" (Represents February 19, 2023, at 12:00:00 UTC)
 >
-> 2. **ISO Format (String)**:
+> 2. **ISO Format**:
 >    - User 3: Registered at "2022-08-15T18:30:00Z" (Represents August 15, 2022, at 18:30:00 UTC)
 >    - User 4: Registered at "2023-04-10T09:45:00Z" (Represents April 10, 2023, at 09:45:00 UTC)
 >
-> These examples demonstrate the variation in the `registeredAt` attribute's data types, with some users having epoch timestamps and others having ISO 8601 formatted dates. It's essential that your implementation handles the different data types (integer and string) for the *registeredAt* attribute.
+> These examples demonstrate the variation in the `registeredAt` attribute's data types, with some users having epoch timestamps and others having ISO 8601 formatted dates. It's essential that your implementation handles the different types of dates for the *registeredAt* attribute.
 
 Käyttäjiä vertaillessasi siis sinun tulee siis huomioida, että niiden rekisteröitymisaika saattaa olla tallennettuna kahdella eri tavalla. Tässä voi olla hyödyksi toteuttaa erillinen apumetodi, joka palauttaa käyttäjästä riippumatta rekisteröitymisajan aina samassa muodossa. Saat oman harkintasi mukaan toteuttaa apumetodeja sekä [User-luokkaan](./src/main/java/model/User.java) että [Sorting-luokkaan](./src/main/java/exercise/Sorting.java). Lisäksi saatat hyötyä Java-tutoriaalin [The Date Time API](https://dev.java/learn/date-time/)-luvusta.
 
@@ -378,14 +378,11 @@ gradlew.bat test --tests SortingUsersTest    # windows
 Testit varmistavat seuraavat tapaukset:
 
 ```
-sorting users by registration date
-  ✓ users with Unix timestamps are sorted in correct order
-  ✓ users with ISO dates are sorted in correct order
-  ✓ users with both numeric and string dates are sorted in correct order
-  ✓ sorting handles posts with identical dates without errors
-  ✓ sorting an empty array must not throw exceptions
-  ✓ sorting must not modify the users
-  ✓ sorting must not modify the original array
+  ✓ users with iso dates are sorted correctly
+  ✓ users with unix timestamps are sorted correctly
+  ✓ list of users with mixed date formats is sorted correctly
+  ✓ list with identical dates is sorted correctly
+  ✓ empty list is returned when the original list is empty
 ```
 
 ## 🚀 Pro task: Geneerinen lajittelumetodi
