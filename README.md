@@ -223,10 +223,11 @@ filtering posts
 
 ## Osa 2: `filterPostsByUser` (20 % pisteistä)
 
-Tiedostossa [Sorting.java](./src/main/java/exercise/Sorting.java) on pohja metodille, joka ottaa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan kyseisen käyttäjän `Post`-oliot. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella: jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä:
+Tiedostossa [Filtering.java](./src/main/java/exercise/Filtering.java) on pohja metodille, joka saa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan kyseisen käyttäjän `Post`-oliot. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella - jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä:
 
 ```mermaid
 classDiagram
+direction LR
 
 class User {
   +id: long
@@ -245,7 +246,7 @@ class Post {
   +deletedAt: String
 }
 
-User --o Post : User (userId)
+User --o Post
 ```
 
 Ratkaisullesi on kirjoitettu [valmiit testit](./src/test/java/exercise/FilteringPostsByUserTest.java), jotka voit suorittaa koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
