@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "Part 1: filterOutDeletedPosts",
+      "setup": "",
+      "run": "./gradlew test --tests FilteringDeletedPostsTest",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 10
+    },
+    {
+      "name": "Part 2: filterPostsByUser",
+      "setup": "",
+      "run": "./gradlew test --tests FilteringPostsByUserTest",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 20
+    },
+    {
+      "name": "Part 3: sortPostsByPublishedDate",
+      "setup": "",
+      "run": "./gradlew test --tests SortingPostsTest",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 40
+    },
+    {
+      "name": "Part 4: sortUsersByRegistrationDate",
+      "setup": "",
+      "run": "./gradlew test --tests SortingUsersTest",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 1,
+      "points": 30
+    }
+  ]
+}

@@ -61,7 +61,7 @@ Jokaisen käyttäjän tuloste on siis muodoltaan seuraava:
    [postedAt-aikaleima]
 ```
 
-💡 *Sinun ei tarvitse muuttaa pääohjelmaa ratkaistessasi tätä tehtävää. Tiedoston muuttaminen esim. ohjelman toiminnan tutkimiseksi on kuitenkin halutessasi sallittua.*
+💡 *Sinun ei tarvitse muuttaa pääohjelmaa ratkaistessasi tätä tehtävää. Pääohjelman muuttaminen esim. ohjelman toiminnan tutkimiseksi on kuitenkin halutessasi sallittua.*
 
 ## Ohjelman rakenne
 
@@ -200,7 +200,7 @@ Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fi
 
 
 
-## Osa 1: `filterOutDeletedPosts` *(perusteet, 10 % pisteistä)*
+## Osa 1: `filterOutDeletedPosts` *(perusteet, 10 %)*
 
 Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy tiedostosta [Filtering.java](./src/main/java/exercise/Filtering.java). Metodin tulee hyödyntää `filter`-operaatiota ja palauttaa uusi lista, josta **puuttuu** kaikki sellaiset Post-oliot, joilla on asetettuna `deletedAt`-arvo.
 
@@ -211,17 +211,8 @@ Ratkaisullesi on kirjoitettu [valmiit testit](./src/test/java/exercise/Filtering
 gradlew.bat test --tests FilteringDeletedPostsTest    # windows
 ```
 
-Testit varmistavat seuraavat tapaukset:
 
-```
-filter out deleted posts
-  ✓ active posts are included in the result
-  ✓ posts marked as deleted are excluded from the result
-  ✓ the function does not modify the original list
-  ✓ empty list is returned when the original list is empty
-```
-
-## Osa 2: `filterPostsByUser` *(perusteet, 20 % pisteistä)*
+## Osa 2: `filterPostsByUser` *(perusteet, 20 %)*
 
 Tiedostossa [Filtering.java](./src/main/java/exercise/Filtering.java) on pohja metodille, joka saa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan kyseisen käyttäjän `Post`-oliot. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella - jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä:
 
@@ -256,17 +247,8 @@ Ratkaisullesi on kirjoitettu [valmiit testit](./src/test/java/exercise/Filtering
 gradlew.bat test --tests FilteringPostsByUserTest    # windows
 ```
 
-Testit varmistavat seuraavat tapaukset:
 
-```
-FilteringPostsByUser
-  ✓ posts written by the user are included in the result
-  ✓ posts written by other users are excluded from the result
-  ✓ empty list is returned when the user has no posts
-  ✓ empty list is returned when the posts list is empty
-```
-
-## Osa 3: `sortPostsByPublishedDate` *(soveltaminen, 40 % pisteistä)*
+## Osa 3: `sortPostsByPublishedDate` *(soveltaminen, 40 %)*
 
 Tehtävän kolmannessa osassa sinun tulee **järjestää** eli **lajitella** kirjoitukset (Post) niiden julkaisuajan mukaan käyttäen **itse toteuttamaasi lajittelualgoritmia**.
 
@@ -287,16 +269,6 @@ Ratkaisullesi on kirjoitettu [valmiit testit](./src/test/java/exercise/SortingPo
 ```
 ./gradlew test --tests SortingPostsTest      # unix
 gradlew.bat test --tests SortingPostsTest    # windows
-```
-
-Testit varmistavat seuraavat tapaukset:
-
-```
-sorting posts by publishedAt
-  ✓ posts are returned in ascending order
-  ✓ empty list is returned when the original list is empty
-  ✓ sorting handles posts with identical dates correctly
-  ✓ the function does not modify the original list
 ```
 
 🚨 **Tämän harjoituksen tavoitteena on opetella itse toteuttamaan jokin tunnettu lajittelualgoritmi, joten Javan valmiiden sort-toteutusten käyttämistä ei sallita.**
@@ -343,7 +315,7 @@ Voit valita itsellesi mieluisen algoritmin esimerkiksi tutustumalla ensin niiden
 💡 *Oikeassa ohjelmistoprojektissa käyttäisit Javan valmista lajittelulogiikkaa joko [Comparator](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html)- tai [Comparable](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html)-rajapinnan avulla. Tässä tehtävässä harjoittelemme kuitenkin algoritmin toteutusta, joten kirjoitamme lajittelun itse. Tehtävän seuraavassa osassa saat käyttää valmista metodia.*
 
 
-## Osa 4: `sortUsersByRegistrationDate` *(soveltaminen, 30 % pisteistä)*
+## Osa 4: `sortUsersByRegistrationDate` *(soveltaminen, 30 %)*
 
 Tehtävän viimeinen osa on toinen lajittelu, jossa lajiteltavan aineiston vaihtelevat tietotyypit edellyttävät hieman soveltamista:
 
@@ -377,16 +349,6 @@ Ratkaisullesi on kirjoitettu [valmiit testit](./src/test/java/exercise/SortingUs
 gradlew.bat test --tests SortingUsersTest    # windows
 ```
 
-Testit varmistavat seuraavat tapaukset:
-
-```
-  ✓ users with iso dates are sorted correctly
-  ✓ users with unix timestamps are sorted correctly
-  ✓ list of users with mixed date formats is sorted correctly
-  ✓ list with identical dates is sorted correctly
-  ✓ empty list is returned when the original list is empty
-```
-
 ## 🚀 Pro task: Geneerinen lajittelumetodi
 
 Vaikka saat käyttää tehtävän viimeisessä osassa valmista sort-metodia, edellisessä osassa toteuttamasi lajittelualgoritmin jatkokehittäminen ["geneeriseksi"](https://dev.java/learn/generics/intro/) voi olla opettavainen kokemus. Geneerisistä tyypeistä löydät lisätietoa esim. [dev.java-tutoriaalista](https://dev.java/learn/generics/intro/) tai lukuisista nettilähteistä.
@@ -405,8 +367,7 @@ Tapoja aineiston lajittelemiseksi on lukuisia. Haasta itsesi ja toteuta tehtäv�
 
 Tämän tehtävän on kehittänyt Teemu Havulinna ja se on lisensoitu [Creative Commons BY-NC-SA -lisenssillä](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-Tehtävänannon, käsiteltävien tiedostojen sekä lähdekoodien toteutuksessa on hyödynnetty ChatGPT 3.5:ttä sekä GitHub copilot-tekoälyavustinta.
-
+Tehtävänannon, lähdekoodien ja testien toteutuksessa on hyödynnetty ChatGPT 3.5 -kielimallia sekä GitHub copilot -tekoälyavustinta.
 
 ## DummyJSON
 
