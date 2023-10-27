@@ -16,23 +16,24 @@ Tehtävät tarkastetaan automaattisesti [JUnit-yksikkötesteillä](./src/test/ja
 
 ## Riippuvuuksien asentaminen
 
+Tämä projektipohja hyödyntää Googlen julkaisemaa [Gson-kirjastoa](https://github.com/google/gson/) JSON-muotoisten tiedostojen käsittelemiseksi. Tiedostojen käsittely on toteutettu valmiina, joten sinun ei itse tarvitse perehtyä Gson-kirjastoon. Lisäksi projektipohjassa hyödynnetään aikaisempien tehtävien tavoin [JUnit-testaustyökalua](https://junit.org/) yksikkötestien suorittamiseksi. Nämä riippuvuudet on määritetty valmiiksi [build.gradle](./build.gradle)-tiedostoon.
+
 Koodieditorisi asentaa todennäköisesti projektin riippuvuudet automaattisesti, kun avaat projektin ensimmäistä kertaa. Voit asentaa riippuvuudet myös manuaalisesti komennolla:
 
 ```sh
 ./gradlew install       # Unix
-gradlew.bat install     # Windows
+.\gradlew.bat install   # Windows
 ```
-
-[Riippuvuudet](./build.gradle) sisältävät [JUnit-testaustyökalun](https://junit.org/) yksikkötestien suorittamiseksi sekä [`Gson`](https://github.com/google/gson/)-kirjaston JSON-tiedostojen käsittelemiseksi.
-
 
 ## Pääohjelman suorittaminen
 
-Tehtäväpohjassa on valmiiksi toteutettu pääohjelma [UsersAndPostsMain.java](./src/main/java/app/UsersAndPostsMain.java), joka tulostaa käyttäjiä ja postauksia. Tulosteet ovat alussa väärät ja esimerkiksi käyttäjien nimien jälkeen tulostuu aina samat otsikot. Tulosteet muuttuvat kuitenkin oikeiksi sitä mukaa, kun ratkot tehtävän osia. Voit suorittaa [pääohjelman](./src/main/java/app/UsersAndPostsMain.java) joko koodieditorisi run-painikkeella tai Gradle:n avulla:
+Tehtäväpohjassa on valmiiksi toteutettu pääohjelma [UsersAndPostsMain.java](./src/main/java/app/UsersAndPostsMain.java), joka tulostaa käyttäjiä ja postauksia. Tulosteet ovat alussa virheelliset, ja esimerkiksi jokaisen käyttäjän kohdalla tulostuu samat otsikot. Tulosteet muuttuvat kuitenkin oikeiksi sitä mukaa, kun ratkot tehtävän osia.
+
+Voit suorittaa [pääohjelman](./src/main/java/app/UsersAndPostsMain.java) joko koodieditorisi run-painikkeella tai Gradle:n avulla:
 
 ```sh
 ./gradlew run       # Unix
-gradlew.bat run     # Windows
+.\gradlew.bat run   # Windows
 ```
 
 Annetun pääohjelman tuloste on muodoltaan esim. seuraava:
@@ -61,13 +62,14 @@ Jokaisen käyttäjän tuloste on siis muodoltaan seuraava:
    [postedAt-aikaleima]
 ```
 
-💡 *Sinun ei tarvitse muuttaa pääohjelmaa ratkaistessasi tätä tehtävää. Pääohjelman muuttaminen esim. ohjelman toiminnan tutkimiseksi on kuitenkin halutessasi sallittua.*
+💡 *Sinun ei tarvitse muuttaa pääohjelmaa ratkaistessasi tätä tehtävää. Pääohjelman muuttaminen esim. ohjelman toiminnan tutkimiseksi on kuitenkin halutessasi sallittua 👍.*
+
 
 ## Ohjelman rakenne
 
-Ohjelma on pilkottu useisiin erillisiin luokkiin ja metodeihin, jotta eri toiminnot saadaan yksikkötestattua, ja jotta niitä voidaan uudelleenkäyttää eri puolilla isompaa sovelluskokonaisuutta.
+Ohjelma on pilkottu useisiin erillisiin luokkiin ja metodeihin, jotta eri toiminnot saadaan yksikkötestattua ja jotta niitä voidaan hyödyntää eri puolilla isompaa sovelluskokonaisuutta.
 
-Sinun tarvitsee tässä harjoituksessa käsitellä ainoastaan kahta luokkaa: [Filtering.java](./src/main/java/exercise/Filtering.java) ja [Sorting.java](./src/main/java/exercise/Sorting.java):
+Sinun tarvitsee tässä harjoituksessa muokata ainoastaan kahta luokkaa: [Filtering.java](./src/main/java/exercise/Filtering.java) ja [Sorting.java](./src/main/java/exercise/Sorting.java):
 
 ```mermaid
 graph LR
@@ -103,9 +105,9 @@ UsersAndPostsMain --> |output data in MD| MarkdownBlog.java
 
 ## Tehtävän data
 
-Tehtävässä hyödynnetään JSON-muotoista esimerkkidataa [dummyjson.com](https://dummyjson.com)-palvelusta. Tehtäväpohjan tiedostot [users.json](./data/users.json) sekä [posts.json](./data/posts.json) on ladattu tähän git-repositorioon DummyJSON-projektin [GitHub-repositoriosta](https://github.com/Ovi/DummyJSON/blob/master/src/data/).
+Tehtävässä hyödynnetään JSON-muotoista esimerkkidataa [dummyjson.com](https://dummyjson.com)-palvelusta. Tehtäväpohjan tiedostot [users.json](./data/users.json) sekä [posts.json](./data/posts.json) on ladattu tähän git-repositorioon [DummyJSON-projektin GitHub-repositoriosta](https://github.com/Ovi/DummyJSON/blob/master/src/data/).
 
-Alkuperäiseen dataan nähden `Post`-tietotyyppiin on tehty uudet attribuutit `publishedAt` sekä `deletedAt`:
+Alkuperäiseen dataan nähden tätä tehtävää varten `Post`-tietotyyppiin on tehty uudet attribuutit `publishedAt` sekä `deletedAt`:
 
 ```diff
  {
@@ -133,10 +135,10 @@ Alkuperäiseen dataan nähden `Post`-tietotyyppiin on tehty uudet attribuutit `p
 
 Näitä JSON-tietotyyppejä vastaavat `Post`- ja `User`-luokat löytyvät valmiina [model-paketista](./src/main/java/model/).
 
-Luokat on toteutettu Record-tyyppisinä, koska niiden on tarkoitus ainoastaan varastoida tietoa. Voit lukea halutessasi lisää Record-tyypeistä [dev.java-tutoriaalista](https://dev.java/learn/records/).
+Luokat on toteutettu `Record`-tyyppisinä, koska niiden on tarkoitus ainoastaan varastoida tietoa. Voit lukea halutessasi lisää `Record`-tyypeistä [dev.java-tutoriaalista](https://dev.java/learn/records/):
 
 ```java
-// User-olioita käytetään aivan kuten mitä tahansa "tavallisten luokkien" olioita:
+// User-olioita käytetään aivan kuten mitä tahansa "tavallisten" luokkien olioita:
 User user = new User(1, "John", "Doe", "johndoe", "2023-09-29");
 
 // Luokalta löytyy automaattisesti "getterit" kaikille kentille:
@@ -161,7 +163,7 @@ Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fi
 [TL;DR](https://en.wikipedia.org/wiki/TL;DR)🥱: Jos et jaksa lukea tarinaa, voit hypätä viestin yli suoraan tehtävän osiin.
 
 > Subject: RE: RE: RE: RE: Users and posts<br />
-> From: Maxwell Goldgrabber
+> From: Maxwell Goldgrabber &lt;maxmoney@example.com&gt;
 >
 > Dear developer,
 >
@@ -169,11 +171,11 @@ Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fi
 >
 > * Task 1: *filterOutDeletedPosts*
 >
->   The first task is to implement the [*filterOutDeletedPosts* method](./src/main/java/exercise/Filtering.java). We've received complaints from our customers about deleted posts appearing in the listings. When the users delete their posts, we don't actually remove them, but we do a [soft delete and just mark the data as deleted](https://www.google.com/search?q=soft+delete). It's absolutely crucial that posts with a *deletedAt* timestamp are filtered out without fail.
+>   Your first task is to implement the [*filterOutDeletedPosts* method](./src/main/java/exercise/Filtering.java). We've received complaints from our customers about deleted posts appearing in the listings. When the users delete their posts, we don't actually remove them, but we do a [soft delete and just mark the data as deleted](https://www.google.com/search?q=soft+delete). It's absolutely crucial that posts with a *deletedAt* timestamp are filtered out without fail.
 >
 > * Task 2: *filterPostsByUser*
 >
->   The second task involves implementing a [*filterPostsByUser* method](./src/main/java/exercise/Filtering.java). This method will ensure that we only show the given user's posts and do not mix posts from different users by mistake. Having this functionality in a separate method helps our testers conduct unit tests and other teams to reuse the code.
+>   Your second task involves implementing a [*filterPostsByUser* method](./src/main/java/exercise/Filtering.java). This method will ensure that we only show the given user's posts and do not mix posts from different users by mistake. Having this functionality in a separate method helps our testers conduct unit tests and other teams to reuse the code.
 >
 > * Task 3: *sortPostsByPublishedDate*
 >
@@ -181,40 +183,42 @@ Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fi
 >
 > * Task 4: *sortUsersByRegistrationDate*
 >
->   Finally, we need to implement a [*sortUsersByRegistrationDate* mtehod](./src/main/java/exercise/Sorting.java) in the same class. This method should sort users by their *registeredAt* date, accommodating different types of timestamps. **We appear to have a bit of technical debt in this field, as different users have their timestamps in different formats. We'll get into that a bit later.**.
+>   Finally, we need to implement a [*sortUsersByRegistrationDate* method](./src/main/java/exercise/Sorting.java) in the same class. This method should sort users by their *registeredAt* date, accommodating different types of timestamps. **We appear to have a bit of technical debt in this field, as different users have their timestamps in different formats. We'll get into that a bit later.**.
 >
 > The urgency of these tasks cannot be overstated.
 >
-> On a lighter note, I wanted to share some exciting news. I've already made **a pre-order on a Tesla**, and my bonus from this quarter is playing a significant role in making that dream a reality. So, you can understand the importance of these tasks!
+> On a lighter note, I wanted to share some exciting news. I've already made **a pre-order on a Tesla** 🚗, and my bonus 💰 from this quarter is playing a significant role in making that dream a reality. So, you can understand the importance of these tasks!!!1!
 >
 > Your job and my quarterly bonus are at stake if we don't address these issues promptly and effectively. I have complete confidence in your abilities, and I know you can rise to this challenge. Please prioritize these tasks and reach out if you need any guidance or assistance along the way.
 >
-> Thank you for your dedication to our project, and I look forward to seeing these improvements implemented.
+> Thank you for your dedication to our project, and I look forward to seeing these improvements implemented!
 >
 > Best regards,
 >
 > Maxwell Goldgrabber<br/>
 > Product Manager<br/>
-> Lampaala Group<br/>
-> This email was written by ChatGPT
+> Ohjelmointi 2 inc.<br/>
+> *This email was written by ChatGPT*
 
 
 
 ## Osa 1: `filterOutDeletedPosts` *(perusteet, 10 %)*
 
-Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy tiedostosta [Filtering.java](./src/main/java/exercise/Filtering.java). Metodin tulee hyödyntää `filter`-operaatiota ja palauttaa uusi lista, josta **puuttuu** kaikki sellaiset Post-oliot, joilla on asetettuna `deletedAt`-arvo.
+Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy [`Filtering`-luokasta](./src/main/java/exercise/Filtering.java). Metodin tulee palauttaa uusi lista, josta **puuttuu** kaikki sellaiset `Post`-oliot, joilla on asetettuna `deletedAt`-arvo.
 
-Ratkaisullesi on kirjoitettu [valmiit testit](./src/test/java/exercise/FilteringDeletedPostsTest.java), jotka voit suorittaa koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
+Ratkaisullesi on kirjoitettu valmis [`FilteringDeletedPostsTest`-testiluokka](./src/test/java/exercise/FilteringDeletedPostsTest.java), jonka voit suorittaa koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
 
 ```
 ./gradlew test --tests FilteringDeletedPostsTest      # unix
-gradlew.bat test --tests FilteringDeletedPostsTest    # windows
+.\gradlew.bat test --tests FilteringDeletedPostsTest  # Windows
 ```
+
+💡 *Tehtävän ratkaisemisessa kannattaa hyödyntää Stream-olioita.*
 
 
 ## Osa 2: `filterPostsByUser` *(perusteet, 20 %)*
 
-Tiedostossa [Filtering.java](./src/main/java/exercise/Filtering.java) on pohja metodille, joka saa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan kyseisen käyttäjän `Post`-oliot. Käyttäjät yhdistetään Post-olioihin niiden id:n perusteella - jokaisella Post-oliolla on `userId`, joka vastaa yhden User-olion `id`:tä:
+Samassa [`Filtering`-luokassa](./src/main/java/exercise/Filtering.java) on pohja `filterPostsByUser`-metodille. Tämä metodi saa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan annetun käyttäjän `Post`-oliot. `User`-oliot yhdistetään `Post`-olioihin niiden id:n perusteella: jokaisella `Post`-oliolla on `userId`, joka vastaa yhden `User`-olion `id`:tä:
 
 ```mermaid
 classDiagram
@@ -240,19 +244,19 @@ class Post {
 User --o Post
 ```
 
-Ratkaisullesi on kirjoitettu [valmiit testit](./src/test/java/exercise/FilteringPostsByUserTest.java), jotka voit suorittaa koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
+Ratkaisullesi on kirjoitettu valmiit testit [`FilteringPostsByUserTest`-testiluokkaan](./src/test/java/exercise/FilteringPostsByUserTest.java). Voit suorittaa ne koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
 
 ```
 ./gradlew test --tests FilteringPostsByUserTest      # unix
-gradlew.bat test --tests FilteringPostsByUserTest    # windows
+.\gradlew.bat test --tests FilteringPostsByUserTest  # Windows
 ```
 
 
 ## Osa 3: `sortPostsByPublishedDate` *(soveltaminen, 40 %)*
 
-Tehtävän kolmannessa osassa sinun tulee **järjestää** eli **lajitella** kirjoitukset (Post) niiden julkaisuajan mukaan käyttäen **itse toteuttamaasi lajittelualgoritmia**.
+Tehtävän kolmannessa osassa sinun tulee **järjestää** eli **lajitella** `Post`-olioita niiden julkaisuajan mukaan käyttäen **itse toteuttamaasi lajittelualgoritmia**.
 
-Tiedostossa [Sorting.java](./src/main/java/exercise/Sorting.java) on määriteltynä seuraava metodi:
+[`Sorting`-luokassa](./src/main/java/exercise/Sorting.java) on määriteltynä pohja seuraavalle metodille:
 
 ```java
 public static List<Post> sortPostsByPublishedDate(List<Post> posts) {
@@ -260,18 +264,22 @@ public static List<Post> sortPostsByPublishedDate(List<Post> posts) {
 }
 ```
 
-Toteuta lajittelulogiikkasi tähän metodiin siten, että metodi palauttaa uuden listan, joka on lajiteltu Post-olioiden julkaisuajan mukaan kasvavassa järjestyksessä. **Voit halutessasi toteuttaa myös erillisiä apumetodeita.**
+Toteuta lajittelulogiikkasi tähän metodiin siten, että metodi palauttaa uuden listan, joka on lajiteltu Post-olioiden julkaisuajan mukaan kasvavassa järjestyksessä. **Voit halutessasi toteuttaa myös erillisiä apumetodeita, joita kutsut tästä metodista.**
 
-Huomaa, että koodisi tulee lajitella **kokonaisia Post-olioita**, eli et voi poimia aineistosta esimerkiksi pelkkiä otsikoita ja julkaisuaikoja. **Et saa myöskään muuttaa annettuja listaa tai sillä olevia olioita**.
+Huomaa, että koodisi tulee lajitella **kokonaisia `Post`-olioita**, eli et voi poimia aineistosta esimerkiksi pelkkiä otsikoita ja julkaisuaikoja. **Et saa myöskään muuttaa annettuja listaa tai sillä olevia olioita**.
 
-Ratkaisullesi on kirjoitettu [valmiit testit](./src/test/java/exercise/SortingPostsTest.java), jotka voit suorittaa koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
+Ratkaisullesi on kirjoitettu valmis [`SortingPostsTest`-testiluokka](./src/test/java/exercise/SortingPostsTest.java), jonka voit suorittaa tuttuun tapaan koodieditorisi testaustyökalulla tai Gradlen avulla:
 
 ```
 ./gradlew test --tests SortingPostsTest      # unix
-gradlew.bat test --tests SortingPostsTest    # windows
+.\gradlew.bat test --tests SortingPostsTest  # Windows
 ```
 
-🚨 **Tämän harjoituksen tavoitteena on opetella itse toteuttamaan jokin tunnettu lajittelualgoritmi, joten Javan valmiiden sort-toteutusten käyttämistä ei sallita.**
+<center>🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨</center>
+
+<center><em><strong>Tämän harjoituksen tavoitteena on opetella itse toteuttamaan jokin tunnettu lajittelualgoritmi, joten Javan valmiiden sort-toteutusten käyttämistä ei sallita.</strong></em></center>
+
+<center>🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨</center>
 
 
 ### Yleisimmät lajittelualgoritmit
@@ -310,23 +318,29 @@ Olemme koonneet alle hyviä vaihtoehtoja, joille löytyy myös hyvät videotutor
 
 Voit valita itsellesi mieluisen algoritmin esimerkiksi tutustumalla ensin niiden tehokkuuteen. Voit myös hyvin valita sen, joka vaikuttaa toteutukseltaan sopivan yksinkertaiselta. Muista myös, että voit kysyä neuvoa mihin vain tehtävässä kohtaamaasi haasteeseen liittyen. Todennäköisesti samojen haasteiden parissa kamppailee myös moni muu kurssilainen.
 
-🚀 *Jos haluat maksimoida uuden oppimisen, valitse toteutettavaksi **rekursiivinen** algoritmi kuten Quicksort tai Merge Sort. Rekursiivinen algoritmi ratkaisee ongelman jakamalla sen pienempiin osaongelmiin ja käyttämällä samaa algoritmia näiden osaongelmien ratkaisemiseen.*
+🚀 *Jos haluat maksimoida uuden oppimisen, valitse toteutettavaksi **rekursiivinen** algoritmi kuten **Quicksort** tai **Merge Sort**. Rekursiivinen algoritmi ratkaisee ongelman jakamalla sen pienempiin osaongelmiin ja käyttämällä samaa algoritmia näiden osaongelmien ratkaisemiseen.*
 
 💡 *Oikeassa ohjelmistoprojektissa käyttäisit Javan valmista lajittelulogiikkaa joko [Comparator](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html)- tai [Comparable](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html)-rajapinnan avulla. Tässä tehtävässä harjoittelemme kuitenkin algoritmin toteutusta, joten kirjoitamme lajittelun itse. Tehtävän seuraavassa osassa saat käyttää valmista metodia.*
 
 
 ## Osa 4: `sortUsersByRegistrationDate` *(soveltaminen, 30 %)*
 
-Tehtävän viimeinen osa on toinen lajittelu, jossa lajiteltavan aineiston vaihtelevat tietotyypit edellyttävät hieman soveltamista:
+Tehtävän viimeinen osa on toinen lajittelutehtävä, jossa lajiteltavan aineiston vaihtelevat tietotyypit edellyttävät hieman soveltamista. Tähän tehtävään liittyen fiktiivinen tuoteomistaja Maxwell Goldgrabber on kirjoittanut toisen saateviestin:
 
-> As part of our ongoing improvements to our platform, we've encountered a unique challenge with the `registeredAt` attribute in our user records. The `registeredAt` attribute stores the registration date for each user. However, we've noticed that different users have different data types for this attribute. **Users who registered through our mobile app have [a numeric value representing the epoch timestamp (in seconds)](https://en.wikipedia.org/wiki/Unix_time), while users who registered through the web app have [a date string in ISO format](https://en.wikipedia.org/wiki/ISO_8601)**. It's crucial that we sort all users in ascending order by their registration date, regardless of the data type inconsistency.
+> Subject: RE: RE: RE: RE: RE: Users and posts<br />
+> From: Maxwell Goldgrabber &lt;maxmoney@example.com&gt;
 >
-> In this case, you are allowed to utilize the pre-existing `sort` methods. However, I encourage you to reuse the sorting logic that you previously used when sorting posts.
+> As part of our ongoing improvements to our platform, we've encountered a unique challenge with the `registeredAt` attribute in our user records. The `registeredAt` attribute stores the registration date for each user. However, we've noticed that different users have different data types for this attribute. **Users who registered through our mobile app have [a numeric value representing the epoch timestamp (in seconds)](https://en.wikipedia.org/wiki/Unix_time)**, while **users who registered through the web app have [a date string in ISO format](https://en.wikipedia.org/wiki/ISO_8601)**. It's crucial that we sort all users in ascending order by their registration date, regardless of the data type inconsistency.
+>
+> I am sure that you will find existing Java classes and methods in the standard library for converting and comparing the timestamps. In this case, you are allowed to utilize the pre-existing `sort` methods. However, I encourage you to reuse the sorting logic that you previously used when sorting posts.
 >
 > Thank you for your dedication to our project, and I look forward to seeing your solution in action.
 >
 > Maxwell Goldgrabber<br/>
-> This email was written by ChatGPT
+> Product Manager<br/>
+> Ohjelmointi 2 inc.<br/>
+> *This email was written by ChatGPT*
+>
 >
 > P.S. Here are examples of the different types of `registeredAt` values for users:
 >
@@ -338,16 +352,18 @@ Tehtävän viimeinen osa on toinen lajittelu, jossa lajiteltavan aineiston vaiht
 >    - User 3: Registered at "2022-08-15T18:30:00Z" (Represents August 15, 2022, at 18:30:00 UTC)
 >    - User 4: Registered at "2023-04-10T09:45:00Z" (Represents April 10, 2023, at 09:45:00 UTC)
 >
-> These examples demonstrate the variation in the `registeredAt` attribute's data types, with some users having epoch timestamps and others having ISO 8601 formatted dates. It's essential that your implementation handles the different types of dates for the *registeredAt* attribute.
+> These examples demonstrate the variation in the `registeredAt` attribute's data types, with some users having [epoch timestamps](https://en.wikipedia.org/wiki/Unix_time) and others having [ISO 8601 formatted dates](https://en.wikipedia.org/wiki/ISO_8601). It's essential that your implementation handles the different types of dates for the *registeredAt* attribute.
 
-Käyttäjiä vertaillessasi siis sinun tulee siis huomioida, että niiden rekisteröitymisaika saattaa olla tallennettuna kahdella eri tavalla. Tässä voi olla hyödyksi toteuttaa erillinen apumetodi, joka palauttaa käyttäjästä riippumatta rekisteröitymisajan aina samassa muodossa. Saat oman harkintasi mukaan toteuttaa apumetodeja sekä [User-luokkaan](./src/main/java/model/User.java) että [Sorting-luokkaan](./src/main/java/exercise/Sorting.java). Lisäksi saatat hyötyä Java-tutoriaalin [The Date Time API](https://dev.java/learn/date-time/)-luvusta.
 
-Ratkaisullesi on kirjoitettu [valmiit testit](./src/test/java/exercise/SortingUsersTest.java), jotka voit suorittaa koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
+Käyttäjiä vertaillessasi siis sinun tulee siis huomioida, että niiden rekisteröitymisaika saattaa olla esitettynä merkkijonomuodossa kahdella eri tavalla. Tässä voi olla hyödyksi toteuttaa erillinen apumetodi, joka palauttaa käyttäjästä riippumatta rekisteröitymisajan aina samassa muodossa. [Kätevä muoto saattaa olla esimerkiksi Javan `Instant`-luokka](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Instant.html). Saat oman harkintasi mukaan toteuttaa apumetodeja sekä [`User`-luokkaan](./src/main/java/model/User.java) että [`Sorting`-luokkaan](./src/main/java/exercise/Sorting.java). Lisäksi saatat hyötyä Java-tutoriaalin [The Date Time API](https://dev.java/learn/date-time/)-luvusta.
+
+Ratkaisullesi on kirjoitettu valmis [`SortingUsersTest`-testiluokka](./src/test/java/exercise/SortingUsersTest.java), jonka voit suorittaa tuttuun tapaan koodieditorisi testaustyökalulla tai Gradlen avulla:
 
 ```
 ./gradlew test --tests SortingUsersTest      # unix
-gradlew.bat test --tests SortingUsersTest    # windows
+.\gradlew.bat test --tests SortingUsersTest  # Windows
 ```
+
 
 ## 🚀 Pro task: Geneerinen lajittelumetodi
 
@@ -373,3 +389,6 @@ Tehtävänannon, lähdekoodien ja testien toteutuksessa on hyödynnetty ChatGPT 
 
 Tehtävässä hyödynnetyn [DummyJSON](https://github.com/Ovi/DummyJSON/)-palvelun on kehittänyt [Muhammad Ovi (Owais)](https://github.com/Ovi/) ja se on lisensoitu MIT-lisenssillä: [https://github.com/Ovi/DummyJSON/blob/master/LICENCE](https://github.com/Ovi/DummyJSON/blob/master/LICENCE).
 
+## Gson
+
+JSON-tiedostojen käsittelyssä hyödynnetty Googlen kehittämä [Gson-kirjasto](https://github.com/google/gson) on lisensoitu [Apache-lisenssillä](https://github.com/google/gson/blob/main/LICENSE).
