@@ -135,25 +135,11 @@ Alkuperäiseen dataan nähden tätä tehtävää varten `Post`-tietotyyppiin on 
 
 Näitä JSON-tietotyyppejä vastaavat [`Post`](./src/main/java/model/Post.java)- ja [`User`](./src/main/java/model/User.java)-luokat löytyvät valmiina [model-paketista](./src/main/java/model/).
 
-Luokat on toteutettu `Record`-tyyppisinä, koska niiden on tarkoitus ainoastaan varastoida tietoa. Voit lukea halutessasi lisää `Record`-tyypeistä [dev.java-tutoriaalista](https://dev.java/learn/records/):
+Luokat on toteutettu `Record`-tyyppisinä, koska niiden on tarkoitus ainoastaan varastoida tietoa. Voit lukea halutessasi lisää `Record`-tyypeistä [dev.java-tutoriaalista](https://dev.java/learn/records/).
 
-```java
-// User-olioita käytetään aivan kuten mitä tahansa "tavallisten" luokkien olioita:
-User user = new User(1, "John", "Doe", "johndoe", "2023-09-29");
+**JSON-tiedoston käsittely on toteutettu valmiiksi [PostReader](./src/main/java/json/PostReader.java)- ja [UserReader](./src/main/java/json/UserReader.java)-luokissa. Sinun ei tarvitse itse käsitellä tiedostoja eikä luoda uusia `Post`- tai `User`-olioita.**
 
-// Luokalta löytyy automaattisesti "getterit" kaikille kentille:
-System.out.println("User id: " + user.id());
-System.out.println("First name: " + user.firstName());
-System.out.println("Last name: " + user.lastName());
-System.out.println("Username: " + user.username());
-System.out.println("Registered at: " + user.registeredAt());
-
-// Record-olioiolla on "gettereiden" lisäksi kokoelma muita valmiita
-// metodeja, kuten toString(), equals() and hashCode(
-System.out.println("User object: " + user);
-```
-
-💡 *JSON-tiedoston lukemiseen Java-ohjelmassa käytämme tässä tehtävässä Googlen julkaisemaa [Gson-kirjastoa](https://github.com/google/gson). Gson mahdollistaa JSON-datan muuntamisen Java-olioiksi ja päinvastoin. JSON-tiedoston käsittely on toteutettu valmiiksi [PostReader](./src/main/java/json/PostReader.java)- ja [UserReader](./src/main/java/json/UserReader.java)-luokissa. Sinun ei tarvitse perehtyä Gson:in yksityiskohtiin tai käyttää sitä itse.*
+💡 *JSON-tiedoston lukemiseen Java-ohjelmassa käytämme tässä tehtävässä Googlen julkaisemaa [Gson-kirjastoa](https://github.com/google/gson). Gson mahdollistaa JSON-datan muuntamisen Java-olioiksi ja päinvastoin. Sinun ei tarvitse perehtyä Gson:in yksityiskohtiin tai käyttää sitä itse.*
 
 
 ## Tehtävä
