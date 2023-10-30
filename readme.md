@@ -275,6 +275,9 @@ Ratkaisullesi on kirjoitettu valmis [`SortingPostsTest`-testiluokka](./src/test/
 .\gradlew.bat test --tests SortingPostsTest  # Windows
 ```
 
+💡 *`publishedAt`-julkaisuajat ovat kaikki merkkijonoja, jotka on esitetty ISO 8601 -muodossa samassa aikavyöhykkeessä. [Näiden aikojen järjestämisessä voit siis hyödyntää merkkijonojen aakkosjärjestystä](https://stackoverflow.com/a/9576911).*
+
+
 <center>🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨 🚨</center>
 
 <center><em><strong>Tämän harjoituksen tavoitteena on opetella itse toteuttamaan jokin tunnettu lajittelualgoritmi, joten Javan valmiiden sort-toteutusten käyttämistä ei sallita.</strong></em></center>
