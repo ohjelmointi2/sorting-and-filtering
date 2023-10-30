@@ -252,9 +252,9 @@ public static List<Post> sortPostsByPublishedDate(List<Post> posts) {
 
 Toteuta lajittelulogiikkasi tähän metodiin siten, että metodi palauttaa uuden listan, joka on lajiteltu `Post`-olioiden julkaisuajan mukaan kasvavassa järjestyksessä. Voit halutessasi toteuttaa myös erillisiä apumetodeita, joita kutsut tästä metodista. Saat myös halutessasi lisätä uusia metodeja `Post`-luokkaan.
 
-Huomaa, että koodisi tulee lajitella **kokonaisia `Post`-olioita**, eli et voi poimia aineistosta esimerkiksi pelkkiä otsikoita ja julkaisuaikoja. Et saa myöskään muuttaa annettuja listaa tai sillä olevia olioita.
+Huomaa, että koodisi tulee lajitella **kokonaisia `Post`-olioita**, eli et voi poimia aineistosta esimerkiksi pelkkiä otsikoita ja julkaisuaikoja. Et saa myöskään muuttaa annettua listaa tai sillä olevia olioita.
 
-💡 *`publishedAt`-julkaisuajat ovat kaikki merkkijonoja, jotka on esitetty [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) -muodossa samassa aikavyöhykkeessä. [Näiden aikojen järjestämisessä voit siis hyödyntää merkkijonojen aakkosjärjestystä](https://stackoverflow.com/a/9576911).*
+💡 *`publishedAt`-julkaisuajat ovat kaikki merkkijonoja, jotka on esitetty [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) -muodossa samassa aikavyöhykkeessä, esim. `"2023-06-01T08:07:20.410Z"`. [Näiden aikojen järjestämisessä voit siis hyödyntää merkkijonojen aakkosjärjestystä](https://stackoverflow.com/a/9576911).*
 
 Ratkaisullesi on kirjoitettu valmis [`SortingPostsTest`-testiluokka](./src/test/java/exercise/SortingPostsTest.java), jonka voit suorittaa tuttuun tapaan koodieditorisi testaustyökalulla tai Gradlen avulla:
 
