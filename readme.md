@@ -133,7 +133,7 @@ Alkuperäiseen dataan nähden tätä tehtävää varten `Post`-tietotyyppiin on 
  }
 ```
 
-Näitä JSON-tietotyyppejä vastaavat `Post`- ja `User`-luokat löytyvät valmiina [model-paketista](./src/main/java/model/).
+Näitä JSON-tietotyyppejä vastaavat [`Post`](./src/main/java/model/Post.java)- ja [`User`](./src/main/java/model/User.java)-luokat löytyvät valmiina [model-paketista](./src/main/java/model/).
 
 Luokat on toteutettu `Record`-tyyppisinä, koska niiden on tarkoitus ainoastaan varastoida tietoa. Voit lukea halutessasi lisää `Record`-tyypeistä [dev.java-tutoriaalista](https://dev.java/learn/records/):
 
@@ -204,7 +204,7 @@ Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fi
 
 ## Osa 1: `filterOutDeletedPosts` *(perusteet, 10 %)*
 
-Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy [`Filtering`-luokasta](./src/main/java/exercise/Filtering.java). Metodin tulee palauttaa uusi lista, josta **puuttuu** kaikki sellaiset `Post`-oliot, joilla on asetettuna `deletedAt`-arvo.
+Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy [`Filtering`-luokasta](./src/main/java/exercise/Filtering.java). Metodin tulee palauttaa uusi lista, josta **puuttuu** kaikki sellaiset [`Post`-oliot](./src/main/java/model/Post.java), joilla on asetettuna `deletedAt`-arvo.
 
 Ratkaisullesi on kirjoitettu valmis [`FilteringDeletedPostsTest`-testiluokka](./src/test/java/exercise/FilteringDeletedPostsTest.java), jonka voit suorittaa koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
 
@@ -218,7 +218,7 @@ Ratkaisullesi on kirjoitettu valmis [`FilteringDeletedPostsTest`-testiluokka](./
 
 ## Osa 2: `filterPostsByUser` *(perusteet, 20 %)*
 
-Samassa [`Filtering`-luokassa](./src/main/java/exercise/Filtering.java) on pohja `filterPostsByUser`-metodille. Tämä metodi saa parametreinaan yhden `User`-olion sekä listan `Post`-olioista. Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan annetun käyttäjän `Post`-oliot. `User`-oliot yhdistetään `Post`-olioihin niiden id:n perusteella: jokaisella `Post`-oliolla on `userId`, joka vastaa yhden `User`-olion `id`:tä:
+Samassa [`Filtering`-luokassa](./src/main/java/exercise/Filtering.java) on pohja `filterPostsByUser`-metodille. Tämä metodi saa parametreinaan yhden [`User`-olion](./src/main/java/model/User.java) sekä listan [`Post`-olioista](./src/main/java/model/Post.java). Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan annetun käyttäjän `Post`-oliot. `User`-oliot yhdistetään `Post`-olioihin niiden id:n perusteella: jokaisella `Post`-oliolla on `userId`, joka vastaa yhden `User`-olion `id`:tä:
 
 ```mermaid
 classDiagram
@@ -254,7 +254,7 @@ Ratkaisullesi on kirjoitettu valmiit testit [`FilteringPostsByUserTest`-testiluo
 
 ## Osa 3: `sortPostsByPublishedDate` *(soveltaminen, 40 %)*
 
-Tehtävän kolmannessa osassa sinun tulee **järjestää** eli **lajitella** `Post`-olioita niiden julkaisuajan mukaan käyttäen **itse toteuttamaasi lajittelualgoritmia**.
+Tehtävän kolmannessa osassa sinun tulee **järjestää** eli **lajitella** [`Post`-olioita](./src/main/java/model/Post.java) niiden `publishedAt`-julkaisuajan mukaan käyttäen **itse toteuttamaasi lajittelualgoritmia**.
 
 [`Sorting`-luokassa](./src/main/java/exercise/Sorting.java) on määriteltynä pohja seuraavalle metodille:
 
@@ -264,7 +264,7 @@ public static List<Post> sortPostsByPublishedDate(List<Post> posts) {
 }
 ```
 
-Toteuta lajittelulogiikkasi tähän metodiin siten, että metodi palauttaa uuden listan, joka on lajiteltu Post-olioiden julkaisuajan mukaan kasvavassa järjestyksessä. Voit halutessasi toteuttaa myös erillisiä apumetodeita, joita kutsut tästä metodista. Saat myös halutessasi lisätä uusia metodeja `Post`-luokkaan.
+Toteuta lajittelulogiikkasi tähän metodiin siten, että metodi palauttaa uuden listan, joka on lajiteltu `Post`-olioiden julkaisuajan mukaan kasvavassa järjestyksessä. Voit halutessasi toteuttaa myös erillisiä apumetodeita, joita kutsut tästä metodista. Saat myös halutessasi lisätä uusia metodeja `Post`-luokkaan.
 
 Huomaa, että koodisi tulee lajitella **kokonaisia `Post`-olioita**, eli et voi poimia aineistosta esimerkiksi pelkkiä otsikoita ja julkaisuaikoja. Et saa myöskään muuttaa annettuja listaa tai sillä olevia olioita.
 
