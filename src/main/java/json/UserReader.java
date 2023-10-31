@@ -13,10 +13,18 @@ import com.google.gson.reflect.TypeToken;
 
 import model.User;
 
+/**
+ * This class is responsible for reading the Users from the JSON file. You do
+ * not need to modify this class.
+ */
 public class UserReader implements JsonFileReader<User> {
+
     // The path to the JSON file containing the Users.
     private static final Path jsonFilePath = Path.of("data", "users.json");
 
+    /**
+     * Returns a list of Users read from the JSON file in the data directory.
+     */
     @Override
     public List<User> readAll() {
         Gson gson = new Gson();

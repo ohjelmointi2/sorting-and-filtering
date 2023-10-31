@@ -13,10 +13,18 @@ import com.google.gson.reflect.TypeToken;
 
 import model.Post;
 
+/**
+ * This class is responsible for reading the Posts from the JSON file. You do
+ * not need to modify this class.
+ */
 public class PostReader implements JsonFileReader<Post> {
+
     // The path to the JSON file containing the Posts.
     private static final Path jsonFilePath = Path.of("data", "posts.json");
 
+    /**
+     * Returns a list of Posts read from the JSON file in the data directory.
+     */
     @Override
     public List<Post> readAll() {
         Gson gson = new Gson();

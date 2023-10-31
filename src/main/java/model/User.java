@@ -19,9 +19,17 @@ package model;
  * See more at https://dev.java/learn/records/
  */
 public record User(
-                long id,
-                String firstName,
-                String lastName,
-                String username,
-                String registeredAt) {
+        long id,
+        String firstName,
+        String lastName,
+        String username,
+        String registeredAt) {
+
+    /*
+     * You do not need to modify this class in the exercise. If you want, you can
+     * add your own methods here.
+     *
+     * If you want to see how this class is used, see the tests in
+     * src/test/java/model/UserTest.java.
+     */
 }

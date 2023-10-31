@@ -19,16 +19,23 @@ package model;
  * See more at https://dev.java/learn/records/
  */
 public record Post(
-                long id,
-                String title,
-                String body,
-                long userId,
+        long id,
+        String title,
+        String body,
+        long userId,
 
-                /** Time of publishing in ISO format, for example "2023-04-10T09:45:00Z" */
-                String publishedAt,
+        /** Time of publishing in ISO format, for example "2023-04-10T09:45:00Z" */
+        String publishedAt,
 
-                /**
-                 * Optional time of deletion in ISO format, for example "2023-04-10T09:45:00Z"
-                 */
-                String deletedAt) {
+        /** Optional time of deletion in ISO format */
+        String deletedAt) {
+
+    /*
+     * You do not need to modify this class in the exercise. If you want, you can
+     * add your own methods here.
+     *
+     * If you want to see how this class is used, see the tests in
+     * src/test/java/model/PostTest.java.
+     */
+
 }
