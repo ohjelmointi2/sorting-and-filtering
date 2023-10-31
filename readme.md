@@ -39,30 +39,30 @@ Voit suorittaa [pääohjelman](./src/main/java/app/UsersAndPostsMain.java) joko 
 Annetun pääohjelman tuloste on muodoltaan esim. seuraava:
 
 ```
-# Samantha Stringdate (2022-07-16T22:57:59.361Z)
- - TypeScript for dummies
-   2023-06-30T05:30:54.612Z 2023-07-13T14:36:48.159Z
- - This post was published in 2021 and deleted in 2023
-   2021-07-11T05:33:06.104Z 2023-07-21T23:53:01.586Z
+# Isac Isodate (2022-07-16T22:57:59.361Z)
+- TypeScript for dummies
+  2023-06-30T05:30:54.612Z
+- This post was published in 2021 and deleted in 2023
+  2021-07-11T05:33:06.104Z 2023-07-21T23:53:01.586Z
 
-# Nelson Numericdate (1638589047)
- - There are different types of secrets.
-   2023-09-01T10:02:19.997Z
- - This was published in 2023 and has not been deleted
-   2023-07-13T09:33:37.100Z
+# Ursula Unixdate (1638589047)
+- There are different types of secrets.
+  2023-09-01T10:02:19.997Z
+- This was published in 2023 and has not been deleted
+  2023-07-13T09:33:37.100Z
 ```
 
 Jokaisen käyttäjän tuloste on siis muodoltaan seuraava:
 
 ```
 # [Etunimi] [Sukunimi] ([rekisteröitymisaika])
- - [Postaus 1:n otsikko]
-   [postedAt-aikaleima] [deletedAt-aikaleima, jos poistettu]
- - [Postaus 2:n otsikko]
-   [postedAt-aikaleima]
+- [Post 1:n otsikko]
+  [publishedAt-aikaleima] [deletedAt-aikaleima, jos poistettu]
+- [Post 2:n otsikko]
+  [publishedAt-aikaleima]
 ```
 
-💡 *Sinun ei tarvitse muuttaa pääohjelmaa ratkaistessasi tätä tehtävää. Pääohjelman muuttaminen esim. ohjelman toiminnan tutkimiseksi on kuitenkin halutessasi sallittua 👍.*
+💡 *Sinun ei tarvitse muuttaa pääohjelmaa ratkaistessasi tätä tehtävää. Pääohjelman muuttaminen esim. ohjelman toiminnan tutkimiseksi on kuitenkin sallittua 👍.*
 
 
 ## Ohjelman rakenne
@@ -254,7 +254,7 @@ Toteuta lajittelulogiikkasi tähän metodiin siten, että metodi palauttaa uuden
 
 Huomaa, että koodisi tulee lajitella **kokonaisia `Post`-olioita**, eli et voi poimia aineistosta esimerkiksi pelkkiä otsikoita ja julkaisuaikoja. Et saa myöskään muuttaa annettua listaa tai sillä olevia olioita.
 
-💡 *`publishedAt`-julkaisuajat ovat kaikki merkkijonoja, jotka on esitetty [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) -muodossa samassa aikavyöhykkeessä, esim. `"2023-06-01T08:07:20.410Z"`. [Näiden aikojen järjestämisessä voit siis hyödyntää merkkijonojen aakkosjärjestystä](https://stackoverflow.com/a/9576911).*
+💡 *`publishedAt`-julkaisuajat ovat kaikki merkkijonoja, jotka on esitetty [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) -muodossa, esim. `"2023-06-01T08:07:20.410Z"`. Näiden aikojen vertailussa voit hyödyntää "aakkosjärjestystä".*
 
 Ratkaisullesi on kirjoitettu valmis [`SortingPostsTest`-testiluokka](./src/test/java/exercise/SortingPostsTest.java), jonka voit suorittaa tuttuun tapaan koodieditorisi testaustyökalulla tai Gradlen avulla:
 
