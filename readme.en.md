@@ -99,13 +99,6 @@ UsersAndPostsMain --> |sort users & posts| Sorting.java
 UsersAndPostsMain --> |output data in MD| MarkdownBlog.java
 ```
 
-
-## Tehtävän data
-
-Tehtävässä hyödynnetään JSON-muotoista esimerkkidataa [dummyjson.com](https://dummyjson.com)-palvelusta. Tehtäväpohjan tiedostot [users.json](./data/users.json) sekä [posts.json](./data/posts.json) on ladattu tähän git-repositorioon [DummyJSON-projektin GitHub-repositoriosta](https://github.com/Ovi/DummyJSON/blob/master/src/data/).
-
-Alkuperäiseen dataan nähden tätä tehtävää varten `Post`-tietotyyppiin on tehty uudet attribuutit `publishedAt` sekä `deletedAt`:
-
 ## Exercise data
 
 The task uses example data in JSON format from the [dummyjson.com](https://dummyjson.com) service. The files [users.json](./data/users.json) and [posts.json](./data/posts.json) in the task template have been downloaded into this git repository from the [DummyJSON project's GitHub repository](https://github.com/Ovi/DummyJSON/blob/master/src/data/).
@@ -124,7 +117,7 @@ Compared to the original data, new attributes `publishedAt` and `deletedAt` have
  }
 ```
 
-`User`-tietotyyppiin on lisäksi lisätty `registeredAt`-tieto.
+The `User` data type has also been updated with the `registeredAt` information.
 
 ```diff
  {
@@ -136,20 +129,19 @@ Compared to the original data, new attributes `publishedAt` and `deletedAt` have
  }
 ```
 
-`publishedAt`-, `deletedAt`- ja `registeredAt`-tiedoilla tulee olemaan tehtävässä iso rooli.
+The `publishedAt`, `deletedAt`, and `registeredAt` information will play a big role in the task.
 
-Näitä JSON-tietotyyppejä vastaavat [`Post`](./src/main/java/model/Post.java)- ja [`User`](./src/main/java/model/Post.java)-luokat löytyvät valmiina [model-paketista](./src/main/java/model/). Luokat on toteutettu `Record`-tyyppisinä, koska niiden on tarkoitus ainoastaan varastoida tietoa. Voit lukea halutessasi lisää `Record`-tyypeistä [dev.java-tutoriaalista](https://dev.java/learn/records/).
+The [`Post`](./src/main/java/model/Post.java) and [`User`](./src/main/java/model/Post.java) classes corresponding to these JSON data types can be found in the [model package](./src/main/java/model/). The classes are implemented as `Record` types because they are only intended to store information. You can read more about `Record` types in the [dev.java tutorial](https://dev.java/learn/records/).
 
-JSON-tiedoston käsittely on toteutettu valmiiksi [`PostReader`](./src/main/java/json/PostReader.java)- ja [`UserReader`](./src/main/java/json/UserReader.java)-luokissa. **Sinun ei tarvitse itse käsitellä tiedostoja eikä luoda uusia `Post`- tai `User`-olioita.**
+The handling of the JSON file has already been implemented in the [`PostReader`](./src/main/java/json/PostReader.java) and  [`UserReader`](./src/main/java/json/UserReader.java) classes. **You do not need to handle the files yourself or create new `Post` or `User` objects.**
 
-💡 *JSON-tiedoston lukemiseen Java-ohjelmassa käytämme tässä tehtävässä Googlen julkaisemaa [Gson-kirjastoa](https://github.com/google/gson). Gson mahdollistaa JSON-datan muuntamisen Java-olioiksi ja päinvastoin. Sinun ei tarvitse perehtyä Gson:in yksityiskohtiin tai käyttää sitä itse.*
+💡 *To read the JSON file in a Java program, we use the Gson library published by Google in this task. Gson allows converting JSON data to Java objects and vice versa. You do not need to delve into the details of Gson or use it yourself.*
 
+## Task
 
-## Tehtävä
+Your company's product owner, Maxwell Goldgrabber, has written you the following fictional cover letter.
 
-Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fiktiivisen saateviestin.
-
-[TL;DR](https://en.wikipedia.org/wiki/TL;DR)🥱: Jos et jaksa lukea tarinaa, voit hypätä viestin yli suoraan tehtävän osiin.
+[TL;DR](https://en.wikipedia.org/wiki/TL;DR)🥱: If you don't feel like reading the story, you can skip directly to the task sections.
 
 > Subject: RE: RE: RE: RE: Users and posts<br />
 > From: Maxwell Goldgrabber &lt;maxmoney@example.com&gt;
@@ -186,10 +178,8 @@ Yrityksenne tuoteomistaja Maxwell Goldgrabber on kirjoittanut sinulle oheisen fi
 >
 > Maxwell Goldgrabber<br/>
 > Product Manager<br/>
-> Ohjelmointi 2 inc.<br/>
+> Programming 2 inc.<br/>
 > *This email was written by ChatGPT*
-
-
 
 ## Osa 1: `filterOutDeletedPosts` *(perusteet, 10 %)*
 
