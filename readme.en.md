@@ -181,23 +181,22 @@ Your company's product owner, Maxwell Goldgrabber, has written you the following
 > Programming 2 inc.<br/>
 > *This email was written by ChatGPT*
 
-## Osa 1: `filterOutDeletedPosts` *(perusteet, 10 %)*
+## Part 1: `filterOutDeletedPosts` *(basics, 10%)*
 
-Toteuta metodi `filterOutDeletedPosts`, jonka pohja löytyy [`Filtering`-luokasta](./src/main/java/exercise/Filtering.java). Metodin tulee palauttaa uusi lista, josta **puuttuu** kaikki sellaiset [`Post`-oliot](./src/main/java/model/Post.java), joilla on asetettuna `deletedAt`-arvo.
+Implement the method `filterOutDeletedPosts`, which can be found in the [`Filtering`](./src/main/java/exercise/Filtering.java) class. The method should return a new list that **excludes** all [`Post`](./src/main/java/model/Post.java) objects that have a `deletedAt` value set.
 
-Ratkaisullesi on kirjoitettu valmis [`FilteringDeletedPostsTest`-testiluokka](./src/test/java/exercise/FilteringDeletedPostsTest.java), jonka voit suorittaa koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
+A ready-made `FilteringDeletedPostsTest` test class has been written for your solution, which you can run using your code editor's testing tool ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) or the [Gradle automation tool](https://docs.gradle.org/current/userguide/java_testing.html):
 
 ```
 ./gradlew test --tests FilteringDeletedPostsTest      # unix
 .\gradlew.bat test --tests FilteringDeletedPostsTest  # Windows
 ```
 
-💡 *Tehtävän ratkaisemisessa kannattaa hyödyntää Stream-olioita.*
+💡 *It is recommended to use Stream objects to solve the task.*
 
+## Part 2: `filterPostsByUser` *(basics, 20%)*
 
-## Osa 2: `filterPostsByUser` *(perusteet, 20 %)*
-
-Samassa [`Filtering`-luokassa](./src/main/java/exercise/Filtering.java) on pohja `filterPostsByUser`-metodille. Tämä metodi saa parametreinaan yhden [`User`-olion](./src/main/java/model/User.java) sekä listan [`Post`-olioista](./src/main/java/model/Post.java). Tehtävänäsi on jatkokehittää tätä metodia siten, että se palauttaa listan, jossa on ainoastaan annetun käyttäjän `Post`-oliot. `User`-oliot yhdistetään `Post`-olioihin niiden id:n perusteella: jokaisella `Post`-oliolla on `userId`, joka vastaa yhden `User`-olion `id`:tä:
+In the same [`Filtering`](./src/main/java/exercise/Filtering.java) class, there is a template for the `filterPostsByUser` method. This method takes as parameters a [`User`](./src/main/java/model/User.java) object and a list of [`Post`](./src/main/java/model/Post.java) objects. Your task is to further develop this method so that it returns a list containing only the `Post` objects of the given user. `User` objects are linked to `Post` objects by their id: each `Post` object has a `userId` that corresponds to the `id` of a `User` object:
 
 ```mermaid
 classDiagram
@@ -223,7 +222,7 @@ class Post {
 User --o Post
 ```
 
-Ratkaisullesi on kirjoitettu valmiit testit [`FilteringPostsByUserTest`-testiluokkaan](./src/test/java/exercise/FilteringPostsByUserTest.java). Voit suorittaa ne koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
+A ready-made [`FilteringDeletedPostsTest`](./src/test/java/exercise/FilteringPostsByUserTest.java) test class has been written for your solution, which you can run using your code editor's testing tool ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) or the [Gradle automation tool](https://docs.gradle.org/current/userguide/java_testing.html):
 
 ```
 ./gradlew test --tests FilteringPostsByUserTest      # unix
