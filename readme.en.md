@@ -295,9 +295,9 @@ You can choose an algorithm that you like by first exploring their efficiency. Y
 
 💡 *In a real software project, you would use Java's built-in sorting logic with either the [Comparator](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html) or [Comparable](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html) interface. However, in this task, we practice implementing the algorithm ourselves, so we will write the sorting logic. In the next part of the task, you will be allowed to use a built-in method.*
 
-## Osa 4: `sortUsersByRegistrationDate` *(soveltaminen, 30 %)*
+## Part 4: `sortUsersByRegistrationDate` *(applying, 30%)*
 
-Tehtävän viimeinen osa on toinen lajittelutehtävä, jossa lajiteltavan aineiston vaihtelevat tietotyypit edellyttävät hieman soveltamista. Tähän tehtävään liittyen fiktiivinen tuoteomistaja Maxwell Goldgrabber on kirjoittanut toisen saateviestin:
+The final part of the task is another sorting task, where the varying data types of the sortable material require some adaptation. For this task, the fictional product owner Maxwell Goldgrabber has written another cover letter:
 
 > Subject: RE: RE: RE: RE: RE: Users and posts<br />
 > From: Maxwell Goldgrabber &lt;maxmoney@example.com&gt;
@@ -326,41 +326,41 @@ Tehtävän viimeinen osa on toinen lajittelutehtävä, jossa lajiteltavan aineis
 >
 > These examples demonstrate the variation in the `registeredAt` attribute's data types, with some users having [epoch timestamps](https://en.wikipedia.org/wiki/Unix_time) and others having [ISO 8601 formatted dates](https://en.wikipedia.org/wiki/ISO_8601). It's essential that your implementation handles the different types of dates for the *registeredAt* attribute.
 
-
 Käyttäjiä vertaillessasi siis sinun tulee siis huomioida, että niiden rekisteröitymisaika saattaa olla esitettynä merkkijonomuodossa kahdella eri tavalla. Tässä voi olla hyödyksi toteuttaa erillinen apumetodi, joka palauttaa käyttäjästä riippumatta rekisteröitymisajan aina samassa muodossa. [Kätevä muoto saattaa olla esimerkiksi Javan `Instant`-luokka](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Instant.html). Saat oman harkintasi mukaan toteuttaa apumetodeja sekä [`User`-luokkaan](./src/main/java/model/User.java) että [`Sorting`-luokkaan](./src/main/java/exercise/Sorting.java). Lisäksi saatat hyötyä Java-tutoriaalin [The Date Time API](https://dev.java/learn/date-time/)-luvusta.
 
 Ratkaisullesi on kirjoitettu valmis [`SortingUsersTest`-testiluokka](./src/test/java/exercise/SortingUsersTest.java), jonka voit suorittaa tuttuun tapaan koodieditorisi testaustyökalulla tai Gradlen avulla:
+
+When comparing users, you need to consider that their registration time may be presented in two different string formats. It might be useful to implement a separate helper method that returns the registration time in the same format regardless of the user. A convenient format might be Java's [`Instant`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Instant.html) class. You can implement helper methods in both the [`User`](./src/main/java/model/User.java) class and the [`Sorting`](./src/main/java/exercise/Sorting.java) class at your discretion. Additionally, you might benefit from the chapter [The Date Time API](https://dev.java/learn/date-time/) in the Java tutorial.
+
+A ready-made [`SortingUsersTest`](./src/test/java/exercise/SortingUsersTest.java) test class has been written for your solution, which you can run as usual using your code editor's testing tool or Gradle:
 
 ```
 ./gradlew test --tests SortingUsersTest      # unix
 .\gradlew.bat test --tests SortingUsersTest  # Windows
 ```
 
+## 🚀 Pro task: generic sorting method
 
-## 🚀 Pro task: Geneerinen lajittelumetodi
-
-Vaikka saat käyttää tehtävän viimeisessä osassa valmista sort-metodia, edellisessä osassa toteuttamasi lajittelualgoritmin jatkokehittäminen ["geneeriseksi"](https://dev.java/learn/generics/intro/) voi olla opettavainen kokemus. Geneerisistä tyypeistä löydät lisätietoa esim. [dev.java-tutoriaalista](https://dev.java/learn/generics/intro/) tai lukuisista nettilähteistä.
+Although you can use a built-in sort method in the final part of the task, further developing the sorting algorithm you implemented in the previous part into a ["generic"](https://dev.java/learn/generics/intro/) one can be an educational experience. You can find more information about generic types, for example, in the [dev.java tutorial](https://dev.java/learn/generics/intro/) or numerous online sources.
 
 [YouTube: Generics In Java - Full Simple Tutorial (Coding with John)](https://www.youtube.com/watch?v=K1iu1kXkVoA)
 
+## 🚀 Pro task: sorting with streams
 
-## 🚀 Pro task: Lajittelu streamien avulla
-
-Tapoja aineiston lajittelemiseksi on lukuisia. Haasta itsesi ja toteuta tehtävän viimeisessä osassa lajittelu hyödyntäen [Javan Stream API:a](https://dev.java/learn/api/streams/intermediate-operation/).
+There are numerous ways to sort data. Challenge yourself and implement the sorting in the final part of the task using the [Java Stream API](https://dev.java/learn/api/streams/intermediate-operation/).
 
 [What is Stream.sorted() method in Java? (educative)](https://www.educative.io/answers/what-is-streamsorted-method-in-java)
 
+## License and authors
 
-## Lisenssi ja tekijät
+This exercise is made by Teemu Havulinna and translated to English by Kalle Ilves and it is licensed under a [Creative Commons BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-Tämän tehtävän on kehittänyt Teemu Havulinna ja se on lisensoitu [Creative Commons BY-NC-SA -lisenssillä](https://creativecommons.org/licenses/by-nc-sa/4.0/).
-
-Tehtävänannon, lähdekoodien ja testien toteutuksessa on hyödynnetty ChatGPT 3.5 -kielimallia sekä GitHub copilot -tekoälyavustinta.
+ChatGPT 3.5 language model and GitHub copilot AI assistant has been used to implement the exercise.
 
 ## DummyJSON
 
-Tehtävässä hyödynnetyn [DummyJSON](https://github.com/Ovi/DummyJSON/)-palvelun on kehittänyt [Muhammad Ovi (Owais)](https://github.com/Ovi/) ja se on lisensoitu MIT-lisenssillä: [https://github.com/Ovi/DummyJSON/blob/master/LICENCE](https://github.com/Ovi/DummyJSON/blob/master/LICENCE).
+The [DummyJSON](https://github.com/Ovi/DummyJSON/) service used in the task was developed by [Muhammad Ovi (Owais)](https://github.com/Ovi/) and is licensed under the MIT license: [https://github.com/Ovi/DummyJSON/blob/master/LICENCE](https://github.com/Ovi/DummyJSON/blob/master/LICENCE).
 
 ## Gson
 
-JSON-tiedostojen käsittelyssä hyödynnetty Googlen kehittämä [Gson-kirjasto](https://github.com/google/gson) on lisensoitu [Apache-lisenssillä](https://github.com/google/gson/blob/main/LICENSE).
+The [Gson](https://github.com/google/gson) library developed by Google, used for handling JSON files, is licensed under the [Apache License](https://github.com/google/gson/blob/main/LICENSE).
