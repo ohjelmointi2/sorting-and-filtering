@@ -1,3 +1,6 @@
+> [!NOTE]  
+> The English translation for this exercise can be found in [this file](./readme.en.md).
+
 # Tietorakenteet ja algoritmit: filter ja sort
 
 Tässä tehtävässä perehdytään Java-olioista koostuvien listojen suodattamiseen ja lajitteluun eri attribuuttien perusteella.
