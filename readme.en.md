@@ -229,12 +229,11 @@ A ready-made [`FilteringDeletedPostsTest`](./src/test/java/exercise/FilteringPos
 .\gradlew.bat test --tests FilteringPostsByUserTest  # Windows
 ```
 
+## Part 3: `sortPostsByPublishedDate` *(applying, 40%)*
 
-## Osa 3: `sortPostsByPublishedDate` *(soveltaminen, 40 %)*
+In the third part of the task, you need to **arrange** or **sort** [`Post`](./src/main/java/model/Post.java) objects by their `publishedAt` publication time using a **sorting algorithm you implement yourself**.
 
-Tehtävän kolmannessa osassa sinun tulee **järjestää** eli **lajitella** [`Post`-olioita](./src/main/java/model/Post.java) niiden `publishedAt`-julkaisuajan mukaan käyttäen **itse toteuttamaasi lajittelualgoritmia**.
-
-[`Sorting`-luokassa](./src/main/java/exercise/Sorting.java) on määriteltynä pohja seuraavalle metodille:
+In the [`Sorting`](./src/main/java/exercise/Sorting.java) class, a template for the following method is defined:
 
 ```java
 public static List<Post> sortPostsByPublishedDate(List<Post> posts) {
@@ -242,13 +241,13 @@ public static List<Post> sortPostsByPublishedDate(List<Post> posts) {
 }
 ```
 
-Toteuta lajittelulogiikkasi tähän metodiin siten, että metodi palauttaa uuden listan, joka on lajiteltu `Post`-olioiden julkaisuajan mukaan kasvavassa järjestyksessä. Voit halutessasi toteuttaa myös erillisiä apumetodeita, joita kutsut tästä metodista. Saat myös halutessasi lisätä uusia metodeja `Post`-luokkaan.
+Implement your sorting logic in this method so that the method returns a new list sorted by the `publishedAt` publication time of the `Post` objects in ascending order. You can also implement separate helper methods that you call from this method if you wish. You may also add new methods to the `Post` class if needed.
 
-Huomaa, että koodisi tulee lajitella **kokonaisia `Post`-olioita**, eli et voi poimia aineistosta esimerkiksi pelkkiä otsikoita ja julkaisuaikoja. Et saa myöskään muuttaa annettua listaa tai sillä olevia olioita.
+Note that your code should sort **entire `Post` objects**, meaning you cannot extract only titles and publication times from the data. You also must not modify the given list or the objects in it.
 
-💡 *`publishedAt`-julkaisuajat ovat kaikki merkkijonoja, jotka on esitetty [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) -muodossa, esim. `"2023-06-01T08:07:20.410Z"`. Näiden aikojen vertailussa voit hyödyntää "aakkosjärjestystä".*
+💡 *The `publishedAt` publication times are all strings presented in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format, e.g., `"2023-06-01T08:07:20.410Z"`. You can use "alphabetical order" for comparing these times.*
 
-Ratkaisullesi on kirjoitettu valmis [`SortingPostsTest`-testiluokka](./src/test/java/exercise/SortingPostsTest.java), jonka voit suorittaa tuttuun tapaan koodieditorisi testaustyökalulla tai Gradlen avulla:
+A ready-made [`SortingPostsTest`](./src/test/java/exercise/SortingPostsTest.java) test class has been written for your solution, which you can run as usual using your code editor's testing tool or Gradle:
 
 ```
 ./gradlew test --tests SortingPostsTest      # unix
@@ -256,49 +255,45 @@ Ratkaisullesi on kirjoitettu valmis [`SortingPostsTest`-testiluokka](./src/test/
 ```
 
 
-📣 **Tämän harjoituksen tavoitteena on opetella itse toteuttamaan jokin tunnettu lajittelualgoritmi, joten Javan valmiiden sort-toteutusten käyttämistä ei sallita.**
+📣 **The goal of this exercise is to learn how to implement a well-known sorting algorithm yourself, so using Java's built-in sort implementations is not allowed.**
 
+### Common Sorting Algorithms
 
-### Yleisimmät lajittelualgoritmit
+Before starting the task, it is important to have a basic understanding of what sorting data programmatically is all about. Sorting algorithms are essentially language-independent in terms of their logic. The video Sorting Algorithms Explained Visually (Beyond Fireship) is a good 9-minute introduction to the topic if, for example, choosing an algorithm is challenging.
 
-Ennen tehtävään ryhtymistä sinulla on tärkeää olla alustava käsitys siitä, mistä tiedon ohjelmallisessa lajittelussa ylipäänsä on kyse. Lajittelualgoritmit ovat logiikkansa puolesta käytännössä ohjelmointikielistä riippumattomia. Video [Sorting Algorithms Explained Visually (Beyond Fireship)](https://youtu.be/RfXt_qHDEPw) on hyvä 9 minuutin intro aiheeseen, mikäli esimerkiksi algoritmin valinta tuottaa haasteita.
+We have compiled some good options below, which also have good video tutorials in Java. You can find many other good resources by searching for the algorithm names:
 
-Olemme koonneet alle hyviä vaihtoehtoja, joille löytyy myös hyvät videotutoriaalit Java-kielellä. Löydät algoritmien nimillä myös lukuisia muita hyviä lähteitä:
-
-
-**Pikalajittelu eli Quicksort**
+**Quicksort**
 
 [https://en.wikipedia.org/wiki/Quicksort](https://en.wikipedia.org/wiki/Quicksort)
 
 [YouTube: Quicksort Sort Algorithm in Java - Full Tutorial With Source (Coding with John)](https://www.youtube.com/watch?v=h8eyY7dIiN4)
 
-**Lomituslajittelu eli Merge Sort**
+**Merge Sort**
 
 [https://en.wikipedia.org/wiki/Merge_sort](https://en.wikipedia.org/wiki/Merge_sort)
 
 [YouTube: Merge Sort Algorithm in Java - Full Tutorial with Source (Coding with John)](https://www.youtube.com/watch?v=bOk35XmHPKs)
 
-**Lisäyslajittelu eli Insertion Sort**
+**Insertion Sort**
 
 [https://en.wikipedia.org/wiki/Insertion_sort](https://en.wikipedia.org/wiki/Insertion_sort)
 
 [YouTube: Insertion Sort Algorithm in Java - Full Tutorial With Source](https://www.youtube.com/watch?v=0lOnnd50cGI)
 
-**Kuplalajittelu eli Bubble Sort**
+**Bubble Sort**
 
 [https://en.wikipedia.org/wiki/Bubble_sort](https://en.wikipedia.org/wiki/Bubble_sort)
 
 [YouTube: Bubble Sort Algorithm Tutorial in Java - How Fast Is It? (Coding with John)](https://www.youtube.com/watch?v=g8qeaEd2jTc)
 
+### Criteria for choosing an algorithm
 
-### Algoritmin valintaperusteet
+You can choose an algorithm that you like by first exploring their efficiency. You can also choose one that seems simple to implement. Remember, you can ask for advice on any challenge you encounter in the task. Many other course participants are likely facing the same challenges.
 
-Voit valita itsellesi mieluisen algoritmin esimerkiksi tutustumalla ensin niiden tehokkuuteen. Voit myös hyvin valita sen, joka vaikuttaa toteutukseltaan sopivan yksinkertaiselta. Muista myös, että voit kysyä neuvoa mihin vain tehtävässä kohtaamaasi haasteeseen liittyen. Todennäköisesti samojen haasteiden parissa kamppailee myös moni muu kurssilainen.
+🚀 *If you want to maximize new learning, choose to implement a **recursive** algorithm like **Quicksort** or **Merge Sort**. A recursive algorithm solves the problem by dividing it into smaller subproblems and using the same algorithm to solve these subproblems.*
 
-🚀 *Jos haluat maksimoida uuden oppimisen, valitse toteutettavaksi **rekursiivinen** algoritmi kuten **Quicksort** tai **Merge Sort**. Rekursiivinen algoritmi ratkaisee ongelman jakamalla sen pienempiin osaongelmiin ja käyttämällä samaa algoritmia näiden osaongelmien ratkaisemiseen.*
-
-💡 *Oikeassa ohjelmistoprojektissa käyttäisit Javan valmista lajittelulogiikkaa joko [Comparator](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html)- tai [Comparable](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html)-rajapinnan avulla. Tässä tehtävässä harjoittelemme kuitenkin algoritmin toteutusta, joten kirjoitamme lajittelun itse. Tehtävän seuraavassa osassa saat käyttää valmista metodia.*
-
+💡 *In a real software project, you would use Java's built-in sorting logic with either the [Comparator](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Comparator.html) or [Comparable](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html) interface. However, in this task, we practice implementing the algorithm ourselves, so we will write the sorting logic. In the next part of the task, you will be allowed to use a built-in method.*
 
 ## Osa 4: `sortUsersByRegistrationDate` *(soveltaminen, 30 %)*
 
