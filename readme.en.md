@@ -62,11 +62,11 @@ The output for each user is therefore as follows:
 
 💡 *You do not need to change the main program to solve this task. However, modifying the main program to investigate its behavior is allowed 👍.*
 
-## Ohjelman rakenne
+## Program structure
 
-Ohjelma on pilkottu useisiin erillisiin luokkiin ja metodeihin, jotta eri toiminnot saadaan yksikkötestattua ja jotta niitä voidaan hyödyntää eri puolilla isompaa sovelluskokonaisuutta.
+The program is divided into several separate classes and methods to allow for unit testing of different functions and to enable their use in various parts of a larger application.
 
-Sinun tarvitsee tässä harjoituksessa muokata ainoastaan kahta luokkaa: [Filtering.java](./src/main/java/exercise/Filtering.java) ja [Sorting.java](./src/main/java/exercise/Sorting.java):
+In this exercise, you only need to modify two classes: [Filtering.java](./src/main/java/exercise/Filtering.java) and [Sorting.java](./src/main/java/exercise/Sorting.java):
 
 ```mermaid
 graph LR
@@ -105,6 +105,12 @@ UsersAndPostsMain --> |output data in MD| MarkdownBlog.java
 Tehtävässä hyödynnetään JSON-muotoista esimerkkidataa [dummyjson.com](https://dummyjson.com)-palvelusta. Tehtäväpohjan tiedostot [users.json](./data/users.json) sekä [posts.json](./data/posts.json) on ladattu tähän git-repositorioon [DummyJSON-projektin GitHub-repositoriosta](https://github.com/Ovi/DummyJSON/blob/master/src/data/).
 
 Alkuperäiseen dataan nähden tätä tehtävää varten `Post`-tietotyyppiin on tehty uudet attribuutit `publishedAt` sekä `deletedAt`:
+
+## Exercise data
+
+The task uses example data in JSON format from the [dummyjson.com](https://dummyjson.com) service. The files [users.json](./data/users.json) and [posts.json](./data/posts.json) in the task template have been downloaded into this git repository from the [DummyJSON project's GitHub repository](https://github.com/Ovi/DummyJSON/blob/master/src/data/).
+
+Compared to the original data, new attributes `publishedAt` and `deletedAt` have been added to the `Post` data type for this task:
 
 ```diff
  {
