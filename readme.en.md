@@ -1,42 +1,40 @@
-# Tietorakenteet ja algoritmit: filter ja sort
+# Data Structures and Algorithms: filter and sort
 
-Tässä tehtävässä perehdytään Java-olioista koostuvien listojen suodattamiseen ja lajitteluun eri attribuuttien perusteella.
+In this task, we will explore filtering and sorting lists of Java objects based on different attributes.
 
-Tavoitteenamme on opetella tiettyjä ennalta valittuja algoritmeja sekä tietorakenteita sekä tehdä koodistamme testattavaa ja uudelleenkäytettävää.
+Our goal is to learn certain pre-selected algorithms and data structures and to make our code testable and reusable.
 
+## Checking the exercises
 
-## Tehtävien tarkastaminen
+The tasks are automatically checked with [JUnit unit tests](./src/test/java/). Familiarizing yourself with the tests is not necessary to complete the task, but the tests can help you understand how your code should work.
 
-Tehtävät tarkastetaan automaattisesti [JUnit-yksikkötesteillä](./src/test/java/). Testeihin perehtyminen ei ole tehtävän suorittamiseksi välttämätöntä, mutta testit voivat auttaa hahmottamaan miten oman koodisi tulee toimia.
+💡 *You may write additional tests if you wish, but do not modify or delete the pre-written tests.*
 
-💡 *Saat kirjoittaa halutessasi lisää testejä, mutta älä muuta tai poista valmiiksi kirjoitettuja testejä.*
+💡 *Changing the names, parameters, or return types of the methods and classes specified in the task description is not allowed to ensure the tests work correctly.*
 
-💡 *Tehtävänannossa määritettyjen metodien ja luokkien nimien, parametrien tai paluuarvojen muuttaminen ei ole sallittua testien toimivuuden varmistamiseksi.*
+## Installing dependencies
 
+This project template uses Google's [Gson library](https://github.com/google/gson/) for handling JSON files. The file handling is already implemented, so you do not need to familiarize yourself with the Gson library. Additionally, the project template uses the [JUnit testing tool](https://junit.org/) for running unit tests, as in previous tasks. These dependencies are pre-defined in the [build.gradle](./build.gradle) file.
 
-## Riippuvuuksien asentaminen
-
-Tämä projektipohja hyödyntää Googlen julkaisemaa [Gson-kirjastoa](https://github.com/google/gson/) JSON-muotoisten tiedostojen käsittelemiseksi. Tiedostojen käsittely on toteutettu valmiina, joten sinun ei itse tarvitse perehtyä Gson-kirjastoon. Lisäksi projektipohjassa hyödynnetään aikaisempien tehtävien tavoin [JUnit-testaustyökalua](https://junit.org/) yksikkötestien suorittamiseksi. Nämä riippuvuudet on määritetty valmiiksi [build.gradle](./build.gradle)-tiedostoon.
-
-Koodieditorisi asentaa todennäköisesti projektin riippuvuudet automaattisesti, kun avaat projektin ensimmäistä kertaa. Voit asentaa riippuvuudet myös manuaalisesti komennolla:
+Your code editor will likely install the project dependencies automatically when you open the project for the first time. You can also install the dependencies manually with the command:
 
 ```sh
 ./gradlew install       # Unix
 .\gradlew.bat install   # Windows
 ```
 
-## Pääohjelman suorittaminen
+## Running the main program
 
-Tehtäväpohjassa on valmiiksi toteutettu pääohjelma [UsersAndPostsMain.java](./src/main/java/app/UsersAndPostsMain.java), joka tulostaa käyttäjiä ja postauksia. Tulosteet ovat alussa virheelliset, ja esimerkiksi jokaisen käyttäjän kohdalla tulostuu samat otsikot. Tulosteet muuttuvat kuitenkin oikeiksi sitä mukaa, kun ratkot tehtävän osia.
+The task template includes a pre-implemented main program [UsersAndPostsMain.java](./src/main/java/app/UsersAndPostsMain.java) that prints users and posts. Initially, the outputs are incorrect, and for example, the same titles are printed for each user. However, the outputs will become correct as you solve the parts of the task.
 
-Voit suorittaa [pääohjelman](./src/main/java/app/UsersAndPostsMain.java) joko koodieditorisi run-painikkeella tai Gradle:n avulla:
+You can run the [main program](./src/main/java/app/UsersAndPostsMain.java) either using the run button in your code editor or with Gradle:
 
 ```sh
 ./gradlew run       # Unix
 .\gradlew.bat run   # Windows
 ```
 
-Annetun pääohjelman tuloste on muodoltaan esim. seuraava:
+The output of the provided main program is, for example, as follows:
 
 ```
 # Isac Isodate (2022-07-16T22:57:59.361Z)
@@ -52,18 +50,17 @@ Annetun pääohjelman tuloste on muodoltaan esim. seuraava:
   2023-07-13T09:33:37.100Z
 ```
 
-Jokaisen käyttäjän tuloste on siis muodoltaan seuraava:
+The output for each user is therefore as follows:
 
 ```
-# [Etunimi] [Sukunimi] ([rekisteröitymisaika])
-- [Post 1:n otsikko]
-  [publishedAt-aikaleima] [deletedAt-aikaleima, jos poistettu]
-- [Post 2:n otsikko]
-  [publishedAt-aikaleima]
+# [First name] [Last name] ([time of registration])
+- [Post 1 title]
+  [publishedAt timestamp] [deletedAt timestamp, if deleted]
+- [Post 2 title]
+  [publishedAt timestamp]
 ```
 
-💡 *Sinun ei tarvitse muuttaa pääohjelmaa ratkaistessasi tätä tehtävää. Pääohjelman muuttaminen esim. ohjelman toiminnan tutkimiseksi on kuitenkin sallittua 👍.*
-
+💡 *You do not need to change the main program to solve this task. However, modifying the main program to investigate its behavior is allowed 👍.*
 
 ## Ohjelman rakenne
 
