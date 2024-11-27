@@ -1,4 +1,4 @@
-# Data Structures and Algorithms: filter and sort
+# Data structures and algorithms: filter and sort
 
 In this task, we will explore filtering and sorting lists of Java objects based on different attributes.
 
